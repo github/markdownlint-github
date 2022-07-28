@@ -1,0 +1,29 @@
+{
+  "name": "markdownlint-github",
+  "version": "1.0.0",
+  "description": "",
+  "main": "no-default-alt-text.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jest": "^28.1.3",
+    "markdownlint": "^0.26.1",
+    "markdownlint-cli": "^0.32.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github/markdownlint-github.git"
+  },
+  "keywords": [],
+  "author": "Andri Alexandrou <andri.j.alexandrou@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/github/markdownlint-github/issues"
+  },
+  "homepage": "https://github.com/github/markdownlint-github#readme"
+}

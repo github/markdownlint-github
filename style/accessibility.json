@@ -1,0 +1,4 @@
+{
+    "comment": "Accessibility custom rules",
+    "no-default-alt-text": true
+}

@@ -1,0 +1,26 @@
+{
+    "default": true,
+    "header-increment": true,
+    "header-style": {
+        "style": "atx"
+    },
+    "ul-style": {
+        "style": "consistent"
+    },
+    "ul-indent": {
+        "indent": 2
+    },
+    "no-multiple-blanks": true,
+    "line-length": false,
+    "no-hard-tabs": true,
+    "whitespace": true,
+    "no-trailing-punctuation": false,
+    "no-inline-html": false,
+    "ol-prefix": false,
+    "no-emphasis-as-header": false,
+    "no-duplicate-header": false,
+    "first-line-h1": false,
+    "blanks-around-lists": true,
+    "blanks-around-fences": true,
+    "code-block-style": false
+}
