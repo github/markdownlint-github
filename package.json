@@ -1,17 +1,19 @@
 {
-  "name": "markdownlint-github",
+  "name": "@github/markdownlint-github",
   "version": "1.0.0",
   "description": "",
-  "main": "no-default-alt-text.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "jest": "^28.1.3",
+    "lodash": "^4.17.15",
     "markdownlint": "^0.26.1",
     "markdownlint-cli": "^0.32.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^28.1.3"
+  },
   "scripts": {
     "test": "jest"
   },
