@@ -1,7 +1,6 @@
 const markdownlint = require('markdownlint')
 const accessibilityRulesConfig = require('../style/accessibility.json')
-const accessibilityRules = require('../accessibility-rules').all
-
+const accessibilityRules = require('..')
 
 const exampleFileName = "./test/example.md"
 const options = {
