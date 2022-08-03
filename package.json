@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "npm run lint && jest",
-    "lint": "markdownlint **/*.md --config .markdownlint.js",
+    "lint": "markdownlint **/*.{md,mdx} --ignore node_modules --config .markdownlint.js",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
