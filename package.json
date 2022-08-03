@@ -24,7 +24,7 @@
     "type": "git",
     "url": "git+https://github.com/github/markdownlint-github.git"
   },
-  "keywords": [],
+  "keywords": ["markdownlint-rule"],
   "author": "Andri Alexandrou <andri.j.alexandrou@gmail.com>",
   "license": "ISC",
   "bugs": {
