@@ -6,7 +6,7 @@ At GitHub, we have a few opinions about how our markdown should be written.
 
 In addition to the good defaults defined by `markdownlint`, we also use this repository to enforce rules not defined by default.
 
-For now, see our opinions in `./index.js`.
+For now, see our opinions codified in `./index.js`.
 
 ## Usage
 
