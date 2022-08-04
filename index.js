@@ -6,6 +6,8 @@ const customRules = [
     noDefaultAltText
 ]
 
+module.exports = [...customRules]
+
 const accessibilityRules = {
     "no-duplicate-header": true,
     "ol-prefix": "ordered",
@@ -37,5 +39,3 @@ module.exports.init = function init(consumerConfig) {
     // left overwrites right
     return _.defaultsDeep(consumerConfig, accessibilityRules, base)
 }
-
-
