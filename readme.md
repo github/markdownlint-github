@@ -16,13 +16,25 @@ For now, see our opinions codified in `./index.js`.
     touch .markdownlint.js
     ```
 
-2. Install packages
+2. Install packages (during development; will change after package is on the registry)
 
     - ```bash
-      npm i -D markdownlint-cli @github/markdownlint-github
+      npm i -D markdownlint-cli
       ```
 
-    - Change the package version in the `package.json` to `github/markdownlint-github`. *Note: as we are in development phase, we are still referring to the GitHub repository for this package. When we publish it to the GitHub package registry, this step will be unnecessary.*
+    - Add package in the `package.json`.
+
+      ```json
+      {
+        "devDependencies": {
+          "@github/markdownlint-github": "github/markdownlint-github"
+        }
+      }
+      ```
+
+    - ```bash
+      npm install
+      ```
 
 3. Add/modify your linting script in `package.json`. Modify `--ignore` and other arguments as needed.
 
