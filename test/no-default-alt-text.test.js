@@ -49,29 +49,44 @@ describe('GH001: No Default Alt Text', () => {
         })
     })
     describe('failures', () => {
-        test('inline example', async () => {
-            const thisTestConfig = {
-                ...config,
-                strings: ["![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)"]
-            }
+        test.only('markdown example', async () => {
+            const strings = [
+                "![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![ScreenShot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![Screen shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)"
+            ]
 
-            const result = await new Promise((resolve, reject) => {
-                markdownlint(thisTestConfig, (err, result) => {
-                    if (err) reject(err)
-                    resolve(result)
+            await strings.map(variation => {
+                const thisTestConfig = {
+                    ...config,
+                    strings: [variation]
+                }
+    
+                const result = await new Promise((resolve, reject) => {
+                    markdownlint(thisTestConfig, (err, result) => {
+                        if (err) reject(err)
+                        resolve(result)
+                    })
                 })
+    
+                const thisResult = result[0]
+                const failedRule = thisResult[0]
+    
+                expect(thisResult).toHaveLength(1)
+                expect(failedRule.ruleNames).toContain(thisRuleName)
+
             })
-
-            const thisResult = result[0]
-            const failedRule = thisResult[0]
-
-            expect(thisResult).toHaveLength(1)
-            expect(failedRule.ruleNames).toContain(thisRuleName)
         })
         test('HTML example', async () => {
             const thisTestConfig = {
                 ...config,
-                strings: ["<img alt=\"Screenshot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"]
+                strings: [
+                    "<img alt=\"Screen Shot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                    "<img alt=\"ScreenShot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                    "<img alt=\"Screen shot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                    "<img alt=\"Screenshot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"
+                ]
             }
 
             const result = await new Promise((resolve, reject) => {
@@ -84,7 +99,7 @@ describe('GH001: No Default Alt Text', () => {
             const thisResult = result[0]
             const failedRule = thisResult[0]
 
-            expect(thisResult).toHaveLength(1)
+            expect(thisResult).toHaveLength(4)
             expect(failedRule.ruleNames).toContain(thisRuleName)
         })
     })
