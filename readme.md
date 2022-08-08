@@ -1,12 +1,16 @@
 # GitHub Flavored Markdown Linting
 
+We are using the [`markdownlint`](https://github.com/DavidAnson/markdownlint) library, and adding a few opinions and custom rules to it.
+
+To review behaviors enabled by `markdownlint`, particularly how to enable or disable rules, see [`markdownlint` Configuration](https://github.com/DavidAnson/markdownlint#configuration).
+
 ## Opinions
 
 At GitHub, we have a few opinions about how our markdown should be written.
 
 In addition to the good defaults defined by `markdownlint`, we also use this repository to enforce rules not defined by default.
 
-For now, see our opinions codified in `./index.js`.
+For now, see our opinions codified in [index.js](./index.js).
 
 ## Usage
 
@@ -19,7 +23,7 @@ For now, see our opinions codified in `./index.js`.
 2. Install packages (during development; will change after package is on the registry)
 
     - ```bash
-      npm i -D markdownlint-cli
+      npm i -D markdownlint-cli # if updating existing package, check for updates
       ```
 
     - Add package in the `package.json`.
