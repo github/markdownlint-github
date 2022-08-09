@@ -87,7 +87,14 @@ Consider upstreaming any rules you find useful as proposals to this repository.
 
 ## Development
 
-### Functional troubleshooting
+Depending on your needs, you may have one of two development paths:
+
+- via integrating with an existing usage (ideal for modifying the interface of our rules)
+- via unit testing (ideal for adding a new rule)
+
+For that reason we've included two paths to develop. Feel free to use either, or both.
+
+### Behavioral troubleshooting
 
 It may be useful to work on this in tandem with a codebase that uses the rules. In that case, we encourage improving local development experience by leveraging `npm link` functionality:
 
@@ -114,6 +121,12 @@ It may be useful to work on this in tandem with a codebase that uses the rules. 
 ### Unit and Interface Testing
 
 We use `jest` tests as well, which should be an equally comfortable development experience. Refer to existing test files for any patterns you may find useful.
+
+## Publishing
+
+To publish, merge your work to main (after PR process completed).
+
+For now, the repository is installed as a package whose location is the repository uploaded on GitHub. This will change.
 
 ## Project status
 
