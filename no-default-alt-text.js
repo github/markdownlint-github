@@ -4,9 +4,6 @@
 const altTextRegex = /^Screen ?[S|s]hot \d{4}-\d{2}-\d{2} at \d \d{2} \d{2} [A|P]M$/gi
 const altTextTagRegex = /alt=\"Screen ?[S|s]hot \d{4}-\d{2}-\d{2} at \d \d{2} \d{2} [A|P]M\"/gi
 
-// const altTextRegex = /^Screen ?[S|s]hot \d{4}-\d{2}-\d{2}/gi
-// const altTextTagRegex = /alt=\"Screen ?[S|s]hot \d{4}-\d{2}-\d{2}/gi
-
 module.exports = {
     "names": [ "GH001", "no-default-alt-text" ],
     "description": "Images should not use the MacOS default screenshot filename as alternate text (alt text). If you have not changed this file, try merging main with your branch. For more information see: https://primer.style/design/accessibility/alternative-text-for-images",
