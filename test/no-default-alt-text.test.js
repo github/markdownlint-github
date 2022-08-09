@@ -1,7 +1,7 @@
 const markdownlint = require('markdownlint')
 const altTextRule = require('../no-default-alt-text')
 
-const thisRuleName = altTextRule.names[0]
+const thisRuleName = altTextRule.names[1]
 
 const config = {
     config: {
@@ -11,81 +11,83 @@ const config = {
     customRules: [altTextRule]
 }
 
+async function runTest(strings){
+    return await Promise.all(strings.map(variation => {
+        const thisTestConfig = {
+            ...config,
+            strings: [variation]
+        }
+
+        return new Promise((resolve, reject) => {
+            markdownlint(thisTestConfig, (err, result) => {
+                if (err) reject(err)
+                resolve(result[0][0])
+            })
+        })
+    })) 
+}
+
 describe('GH001: No Default Alt Text', () => {
     describe('successes', () => {
         test('inline', async () => {
-            const thisTestConfig = {
-                ...config,
-                strings: ["![Chart with a single root node reading 'Example'](https://user-images.githubusercontent.com/abcdef.png)"]
-            }
+            const strings = ["![Chart with a single root node reading 'Example'](https://user-images.githubusercontent.com/abcdef.png)"]
 
-            const result = await new Promise((resolve, reject) => {
-                markdownlint(thisTestConfig, (err, result) => {
-                    if (err) reject(err)
-                    resolve(result)
-                })
+            const results = await runTest(strings)
+
+            results.forEach(result => {
+                expect(result).not.toBeDefined()
             })
-
-            const thisResult = result[0]
-
-            expect(thisResult).toHaveLength(0)
         })
         test('html image', async () => {
-            const thisTestConfig = {
-                ...config,
-                strings: ["<img alt=\"A helpful description\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"]
-            }
-
-            const result = await new Promise((resolve, reject) => {
-                markdownlint(thisTestConfig, (err, result) => {
-                    if (err) reject(err)
-                    resolve(result)
-                })
+            const strings = ["<img alt=\"A helpful description\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"]
+            
+            const results = await runTest(strings)
+            
+            results.forEach(result => {
+                expect(result).not.toBeDefined()
             })
-
-            const thisResult = result[0]
-
-            expect(thisResult).toHaveLength(0)
         })
     })
     describe('failures', () => {
-        test('inline example', async () => {
-            const thisTestConfig = {
-                ...config,
-                strings: ["![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)"]
-            }
+        test('markdown example', async () => {
+            const strings = [
+                "![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![ScreenShot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![Screen shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+                "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)"
+            ]
 
-            const result = await new Promise((resolve, reject) => {
-                markdownlint(thisTestConfig, (err, result) => {
-                    if (err) reject(err)
-                    resolve(result)
-                })
+            const results = await runTest(strings)
+            
+            const failedRules = results
+                .map(result => result.ruleNames)
+                .flat()
+                .filter(name => !name.includes('GH'))
+
+            expect(failedRules).toHaveLength(4)
+            failedRules.forEach(rule => {
+                expect(rule).toBe(thisRuleName)
             })
-
-            const thisResult = result[0]
-            const failedRule = thisResult[0]
-
-            expect(thisResult).toHaveLength(1)
-            expect(failedRule.ruleNames).toContain(thisRuleName)
         })
         test('HTML example', async () => {
-            const thisTestConfig = {
-                ...config,
-                strings: ["<img alt=\"Screenshot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"]
-            }
+            const strings = [
+                "<img alt=\"Screen Shot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                "<img alt=\"ScreenShot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                "<img alt=\"Screen shot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">",
+                "<img alt=\"Screenshot 2022-06-26 at 7 41 30 PM\" src=\"https://user-images.githubusercontent.com/abcdef.png\">"
+            ]
 
-            const result = await new Promise((resolve, reject) => {
-                markdownlint(thisTestConfig, (err, result) => {
-                    if (err) reject(err)
-                    resolve(result)
-                })
+            const results = await runTest(strings)
+
+            const failedRules = results
+                .map(result => result.ruleNames)
+                .flat()
+                .filter(name => !name.includes('GH'))
+
+            expect(failedRules).toHaveLength(4)
+            failedRules.forEach(rule => {
+                expect(rule).toBe(thisRuleName)
             })
-
-            const thisResult = result[0]
-            const failedRule = thisResult[0]
-
-            expect(thisResult).toHaveLength(1)
-            expect(failedRule.ruleNames).toContain(thisRuleName)
         })
     })
 })

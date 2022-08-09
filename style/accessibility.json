@@ -1,4 +1,9 @@
 {
-    "comment": "Accessibility custom rules",
-    "no-default-alt-text": true
+    "no-default-alt-text": true,
+    "no-duplicate-header": true,
+    "no-emphasis-as-header": true,
+    "no-space-in-links": false,
+    "ol-prefix": "ordered",
+    "single-h1": true,
+    "ul-style": true
 }

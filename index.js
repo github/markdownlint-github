@@ -1,22 +1,20 @@
 const _ = require('lodash')
 
+const accessibilityRules = require('./style/accessibility.json')
+const base = require('./style/base.json')
 const noDefaultAltText = require('./no-default-alt-text')
 
-const customRules = [noDefaultAltText]
-
-const base = {
-    config: {},
-    customRules
-}
-
-customRules.forEach(rule => {
-    base.config[rule.names[1]] = true
-})
-
-module.exports.overwriteWith = function overwriteWith(consumerConfig) {
-    // defaults are right-most
-    return _.defaultsDeep(consumerConfig, base)
-}
-
+const customRules = [
+    noDefaultAltText
+]
 
 module.exports = [...customRules]
+
+customRules.forEach(rule => {
+    base[rule.names[1]] = true
+})
+
+module.exports.init = function init(consumerConfig) {
+    // left overwrites right
+    return _.defaultsDeep(consumerConfig, accessibilityRules, base)
+}
