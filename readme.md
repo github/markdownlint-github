@@ -119,12 +119,3 @@ Manage version and publish on a new branch, and create a PR to merge these chang
 npm version [major|minor|patch] # alternatively, manage version in package.json
 npm run publish
 ```
-
-## Project status
-
-We're currently in development on this. The delivery target date is August 15, 2022.
-
-[[Story] [Tooling] Tidy up, publish, and update markdown-lint package #1591](https://github.com/github/accessibility/issues/1591)
-[[Epic] Increased Accessibility Linting Coverage #1397](https://github.com/github/accessibility/issues/1397)
-
-Effort initiated during a [markdown linting tooling spike](https://github.com/github/accessibility/issues/1429).
