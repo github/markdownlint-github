@@ -6,6 +6,12 @@
   "directories": {
     "test": "test"
   },
+  "scripts": {
+    "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
+    "test": "npm run lint && jest",
+    "lint": "markdownlint **/*.{md,mdx} --ignore node_modules --config .markdownlint.js",
+    "lint:fix": "npm run lint -- --fix"
+  },
   "dependencies": {
     "lodash": "^4.17.15"
   },
@@ -14,11 +20,6 @@
     "markdownlint": "^0.26.1",
     "markdownlint-cli": "^0.32.1",
     "@github/markdownlint-github": "file:./."
-  },
-  "scripts": {
-    "test": "npm run lint && jest",
-    "lint": "markdownlint **/*.{md,mdx} --ignore node_modules --config .markdownlint.js",
-    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
