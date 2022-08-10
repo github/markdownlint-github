@@ -20,24 +20,11 @@ For now, see our opinions codified in [index.js](./index.js).
     touch .markdownlint.js
     ```
 
-2. Install packages (during development; will change after package is on the registry)
+2. Install packages
 
     - ```bash
-      npm i -D markdownlint-cli # if updating existing package, check for updates
-      ```
-
-    - Add package in the `package.json`.
-
-      ```json
-      {
-        "devDependencies": {
-          "@github/markdownlint-github": "github/markdownlint-github"
-        }
-      }
-      ```
-
-    - ```bash
-      npm install
+      npm install -D markdownlint-cli # if updating existing package, check for updates
+      npm install -D @github/markdownlint-github [--@github:registry=https://registry.npmjs.org]
       ```
 
 3. Add/modify your linting script in `package.json`. Modify `--ignore` and other arguments as needed.
@@ -126,13 +113,9 @@ We use `jest` tests as well, which should be an equally comfortable development 
 
 To publish, merge your work to main (after PR process completed).
 
-For now, the repository is installed as a package whose location is the repository uploaded on GitHub. This will change.
+Manage version and publish on a new branch, and create a PR to merge these changes into main.
 
-## Project status
-
-We're currently in development on this. The delivery target date is August 15, 2022.
-
-[[Story] [Tooling] Tidy up, publish, and update markdown-lint package #1591](https://github.com/github/accessibility/issues/1591)
-[[Epic] Increased Accessibility Linting Coverage #1397](https://github.com/github/accessibility/issues/1397)
-
-Effort initiated during a [markdown linting tooling spike](https://github.com/github/accessibility/issues/1429).
+```bash
+npm version [major|minor|patch] # alternatively, manage version in package.json
+npm run publish
+```
