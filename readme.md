@@ -2,7 +2,7 @@
 
 We are using the [`markdownlint`](https://github.com/DavidAnson/markdownlint) library, and adding a few opinions and custom rules to it.
 
-To review behaviors enabled by `markdownlint`, particularly how to enable or disable rules, see [`markdownlint` Configuration](https://github.com/DavidAnson/markdownlint#configuration).
+To review behaviors supported by `markdownlint`, particularly how to enable or disable rules, see [`markdownlint` Configuration](https://github.com/DavidAnson/markdownlint#configuration).
 
 ## Opinions
 
