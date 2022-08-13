@@ -1,6 +1,6 @@
 # GitHub Flavored Markdown Linting
 
-We are using the [`markdownlint`](https://github.com/DavidAnson/markdownlint) library, and adding a few opinions and custom rules to it.
+We are using the [`markdownlint`](https://github.com/DavidAnson/markdownlint) library (via [`markdownlint-cli`](https://github.com/igorshubovych/markdownlint-cli)), and adding a few opinions and custom rules to it.
 
 To review behaviors supported by `markdownlint`, particularly how to enable or disable rules, see [`markdownlint` Configuration](https://github.com/DavidAnson/markdownlint#configuration).
 
