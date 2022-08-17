@@ -52,7 +52,7 @@ For now, see our opinions codified in [index.js](./index.js).
 
 ### Advanced: Adding custom rules in your codebase
 
-You may write custom rules within your repository. Follow the [custom rules guide in markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/CustomRules.md) to write your rule. Notice that the rule will need to be applied both in the configuration and the custom rule file will need to be passed in to the running argument in the list of rules applied.
+You may write custom rules within your repository. Follow the [custom rules guide in markdownlint](https://github.com/DavidAnson/markdownlint/blob/main/doc/CustomRules.md) to write your rule. Notice that the rule will need to be 1) enabled in the configuration and 2) passed in at the command line.
 
 For instance, if you add `my-rule.js` with the name "some-rule" (see `markdownlint` docs),
 
