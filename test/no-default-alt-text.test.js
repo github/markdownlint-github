@@ -1,33 +1,5 @@
-const markdownlint = require("markdownlint");
 const altTextRule = require("../no-default-alt-text");
-
-const thisRuleName = altTextRule.names[1];
-
-const config = {
-  config: {
-    default: false,
-    [thisRuleName]: true,
-  },
-  customRules: [altTextRule],
-};
-
-async function runTest(strings) {
-  return await Promise.all(
-    strings.map((variation) => {
-      const thisTestConfig = {
-        ...config,
-        strings: [variation],
-      };
-
-      return new Promise((resolve, reject) => {
-        markdownlint(thisTestConfig, (err, result) => {
-          if (err) reject(err);
-          resolve(result[0][0]);
-        });
-      });
-    })
-  );
-}
+const runTest = require("./utils/run-test").runTest;
 
 describe("GH001: No Default Alt Text", () => {
   describe("successes", () => {
@@ -36,7 +8,7 @@ describe("GH001: No Default Alt Text", () => {
         "![Chart with a single root node reading 'Example'](https://user-images.githubusercontent.com/abcdef.png)",
       ];
 
-      const results = await runTest(strings);
+      const results = await runTest(strings, altTextRule);
 
       for (const result of results) {
         expect(result).not.toBeDefined();
@@ -47,7 +19,7 @@ describe("GH001: No Default Alt Text", () => {
         '<img alt="A helpful description" src="https://user-images.githubusercontent.com/abcdef.png">',
       ];
 
-      const results = await runTest(strings);
+      const results = await runTest(strings, altTextRule);
 
       for (const result of results) {
         expect(result).not.toBeDefined();
@@ -63,7 +35,7 @@ describe("GH001: No Default Alt Text", () => {
         "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
       ];
 
-      const results = await runTest(strings);
+      const results = await runTest(strings, altTextRule);
 
       const failedRules = results
         .map((result) => result.ruleNames)
@@ -72,7 +44,7 @@ describe("GH001: No Default Alt Text", () => {
 
       expect(failedRules).toHaveLength(4);
       for (const rule of failedRules) {
-        expect(rule).toBe(thisRuleName);
+        expect(rule).toBe("no-default-alt-text");
       }
     });
 
@@ -84,7 +56,7 @@ describe("GH001: No Default Alt Text", () => {
         '<img alt="Screenshot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
       ];
 
-      const results = await runTest(strings);
+      const results = await runTest(strings, altTextRule);
 
       const failedRules = results
         .map((result) => result.ruleNames)
@@ -93,7 +65,7 @@ describe("GH001: No Default Alt Text", () => {
 
       expect(failedRules).toHaveLength(4);
       for (const rule of failedRules) {
-        expect(rule).toBe(thisRuleName);
+        expect(rule).toBe("no-default-alt-text");
       }
     });
 

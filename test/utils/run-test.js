@@ -1,0 +1,31 @@
+const markdownlint = require("markdownlint");
+
+async function runTest(strings, rule) {
+  const thisRuleName = rule.names[1];
+
+  const config = {
+    config: {
+      default: false,
+      [thisRuleName]: true,
+    },
+    customRules: [rule],
+  };
+
+  return await Promise.all(
+    strings.map((variation) => {
+      const thisTestConfig = {
+        ...config,
+        strings: [variation],
+      };
+
+      return new Promise((resolve, reject) => {
+        markdownlint(thisTestConfig, (err, result) => {
+          if (err) reject(err);
+          resolve(result[0][0]);
+        });
+      });
+    })
+  );
+}
+
+exports.runTest = runTest;
