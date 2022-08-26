@@ -8,7 +8,7 @@
   },
   "scripts": {
     "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
-    "test": "jest",
+    "test": "npm run lint && jest",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
