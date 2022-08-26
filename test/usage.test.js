@@ -1,4 +1,4 @@
-const githubMarkdownLint = require("@github/markdownlint-github");
+const githubMarkdownLint = require("../index");
 
 describe("usage", () => {
   describe("default export", () => {
