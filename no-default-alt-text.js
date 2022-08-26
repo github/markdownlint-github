@@ -16,31 +16,29 @@ module.exports = {
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
     // markdown syntax
-    params.tokens
-      .filter((t) => t.type === "inline")
-      .forEach((token) => {
-        token.children
-          .filter((t) => t.type === "image")
-          .forEach((image) => {
-            if (image.content.match(altTextRegex)) {
-              onError({
-                lineNumber: image.lineNumber,
-                details: `For image: ${image.content}`,
-              });
-            }
+    const inlineTokens = params.tokens.filter((t) => t.type === "inline");
+    for (const token of inlineTokens) {
+      const imageTokens = token.children.filter((t) => t.type === "image");
+      for (const image of imageTokens) {
+        if (image.content.match(altTextRegex)) {
+          onError({
+            lineNumber: image.lineNumber,
+            details: `For image: ${image.content}`,
           });
-      });
+        }
+      }
+    }
 
     // html syntax
     let lineNumber = 1;
-    params.lines.forEach((line) => {
+    for (const line of params.lines) {
       if (line.match(altTextTagRegex)) {
         onError({
           lineNumber,
-          details: `For line: ${line}`,
+          details: `For image: ${line}`,
         });
       }
       lineNumber++;
-    });
+    }
   },
 };
