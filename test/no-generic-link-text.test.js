@@ -24,6 +24,8 @@ describe("GH002: No Generic Link Text", () => {
         "[read more](www.github.com)",
         "[more](www.github.com)",
         "[learn more](www.github.com)",
+        "[learn more.](www.github.com)",
+        "[click here!](www.github.com)",
       ];
 
       const results = await runTest(strings, noGenericLinkTextRule);
