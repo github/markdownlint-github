@@ -7,6 +7,7 @@ describe("GH002: No Generic Link Text", () => {
       const strings = [
         "[GitHub](https://www.github.com)",
         "[Read more about GitHub](https://www.github.com/about)",
+        "[](www.github.com)",
       ];
 
       const results = await runTest(strings, noGenericLinkTextRule);
@@ -35,7 +36,7 @@ describe("GH002: No Generic Link Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(5);
+      expect(failedRules).toHaveLength(7);
       for (const rule of failedRules) {
         expect(rule).toBe("no-generic-link-text");
       }

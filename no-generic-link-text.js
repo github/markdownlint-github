@@ -7,6 +7,15 @@ const bannedLinkText = [
   "link",
 ];
 
+/* Downcase and strip extra whitespaces and punctuation */
+const stripAndDowncaseText = (text) => {
+  return text
+    .toLowerCase()
+    .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+};
+
 module.exports = {
   names: ["GH002", "no-generic-link-text"],
   description:
@@ -24,8 +33,11 @@ module.exports = {
         if (linkTextTokens) {
           const linkText = linkTextTokens[0];
           if (
+            linkText &&
             linkText.content &&
-            bannedLinkText.includes(linkText.content.toLowerCase().trim())
+            bannedLinkText.includes(
+              stripAndDowncaseText(linkTextTokens[0].content)
+            )
           ) {
             onError({
               lineNumber: linkText.lineNumber,
