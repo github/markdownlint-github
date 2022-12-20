@@ -35,9 +35,7 @@ module.exports = {
           if (
             linkText &&
             linkText.content &&
-            bannedLinkText.includes(
-              stripAndDowncaseText(linkTextTokens[0].content)
-            )
+            bannedLinkText.includes(stripAndDowncaseText(linkText.content))
           ) {
             onError({
               lineNumber: linkText.lineNumber,
