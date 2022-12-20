@@ -28,20 +28,32 @@ module.exports = {
     // markdown syntax
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");
     for (const token of inlineTokens) {
-      if (token.children.some((t) => t.type === "link_open")) {
-        const linkTextTokens = token.children.filter((t) => t.type === "text");
-        if (linkTextTokens) {
-          const linkText = linkTextTokens[0];
-          if (
-            linkText &&
-            linkText.content &&
-            bannedLinkText.includes(stripAndDowncaseText(linkText.content))
-          ) {
+      const { children } = token;
+      let inLink = false;
+      let linkText = "";
+      let lineIndex = 0;
+      let { lineNumber } = token;
+      for (const child of children) {
+        const { content, markup, type } = child;
+        if (type === "link_open") {
+          inLink = true;
+          linkText = "";
+        } else if (type === "link_close") {
+          inLink = false;
+          if (bannedLinkText.includes(stripAndDowncaseText(linkText))) {
             onError({
-              lineNumber: linkText.lineNumber,
-              details: `For link: ${linkText.content}`,
+              lineNumber,
+              lineIndex,
+              detail: `For link: ${linkText}`,
             });
           }
+        } else if (type === "softbreak" || type === "hardbreak") {
+          lineNumber++;
+          lineIndex = 0;
+        } else if (inLink) {
+          linkText += type.endsWith("_inline")
+            ? `${markup}${content}${markup}`
+            : content || markup;
         }
       }
     }
