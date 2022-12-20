@@ -13,5 +13,6 @@ module.exports = {
   rules: {
     "import/no-commonjs": "off",
     "filenames/match-regex": "off",
+    "i18n-text/no-en": "off",
   },
 };
