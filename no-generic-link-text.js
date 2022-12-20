@@ -24,7 +24,7 @@ module.exports = {
     "https://primer.style/design/accessibility/links#writing-link-text"
   ),
   tags: ["accessibility", "links"],
-  function: function GH001(params, onError) {
+  function: function GH002(params, onError) {
     // markdown syntax
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");
     for (const token of inlineTokens) {

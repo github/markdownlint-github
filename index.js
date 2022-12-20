@@ -3,8 +3,9 @@ const _ = require("lodash");
 const accessibilityRules = require("./style/accessibility.json");
 const base = require("./style/base.json");
 const noDefaultAltText = require("./no-default-alt-text");
+const noGenericLinkText = require("./no-generic-link-text");
 
-const customRules = [noDefaultAltText];
+const customRules = [noDefaultAltText, noGenericLinkText];
 
 module.exports = [...customRules];
 
