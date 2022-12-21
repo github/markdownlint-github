@@ -34,10 +34,9 @@ module.exports = {
       const { children } = token;
       let inLink = false;
       let linkText = "";
-      let lineIndex = 0;
-      let { lineNumber } = token;
+
       for (const child of children) {
-        const { content, markup, type } = child;
+        const { content, type } = child;
         if (type === "link_open") {
           inLink = true;
           linkText = "";
@@ -45,18 +44,12 @@ module.exports = {
           inLink = false;
           if (allBannedLinkTexts.includes(stripAndDowncaseText(linkText))) {
             onError({
-              lineNumber,
-              lineIndex,
+              lineNumber: child.lineNumber,
               detail: `For link: ${linkText}`,
             });
           }
-        } else if (type === "softbreak" || type === "hardbreak") {
-          lineNumber++;
-          lineIndex = 0;
         } else if (inLink) {
-          linkText += type.endsWith("_inline")
-            ? `${markup}${content}${markup}`
-            : content || markup;
+          linkText += content;
         }
       }
     }
