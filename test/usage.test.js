@@ -4,7 +4,7 @@ describe("usage", () => {
   describe("default export", () => {
     test("custom rules on default export", () => {
       const rules = githubMarkdownLint;
-      expect(rules).toHaveLength(1);
+      expect(rules).toHaveLength(2);
       expect(rules[0].names).toEqual(["GH001", "no-default-alt-text"]);
     });
   });
@@ -17,6 +17,7 @@ describe("usage", () => {
         "no-space-in-links": false,
         "single-h1": true,
         "no-emphasis-as-header": true,
+        "no-generic-link-text": true,
         "ul-style": true,
         default: true,
         "no-inline-html": false,
