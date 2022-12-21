@@ -1,3 +1,5 @@
+const { stripAndDowncaseText } = require("./helpers/strip-and-downcase-text");
+
 const bannedLinkText = [
   "read more",
   "learn more",
@@ -6,15 +8,6 @@ const bannedLinkText = [
   "click here",
   "link",
 ];
-
-/* Downcase and strip extra whitespaces and punctuation */
-const stripAndDowncaseText = (text) => {
-  return text
-    .toLowerCase()
-    .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-};
 
 module.exports = {
   names: ["GH002", "no-generic-link-text"],
