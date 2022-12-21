@@ -12,7 +12,7 @@ const stripAndDowncaseText = (text) => {
   return text
     .toLowerCase()
     .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "")
-    .replace(/\s{2,}/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
 };
 
@@ -27,7 +27,7 @@ module.exports = {
   function: function GH002(params, onError) {
     // markdown syntax
     const allBannedLinkTexts = bannedLinkText.concat(
-      params.config.banned_link_texts || []
+      params.config.additional_banned_texts || []
     );
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");
     for (const token of inlineTokens) {

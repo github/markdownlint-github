@@ -1,12 +1,12 @@
 const markdownlint = require("markdownlint");
 
-async function runTest(strings, rule) {
+async function runTest(strings, rule, ruleConfig) {
   const thisRuleName = rule.names[1];
 
   const config = {
     config: {
       default: false,
-      [thisRuleName]: true,
+      [thisRuleName]: ruleConfig || true,
     },
     customRules: [rule],
   };

@@ -9,7 +9,11 @@ describe("GH002: No Generic Link Text", () => {
         "[Read more about GitHub](https://www.github.com/about)",
         "[](www.github.com)",
         "![Image](www.github.com)",
-        "I am not a link, and unrelated",
+        `
+        ## Hello
+        I am not a link, and unrelated.
+        ![GitHub](some_image.png)
+        `,
       ];
 
       const results = await runTest(strings, noGenericLinkTextRule);
@@ -20,12 +24,13 @@ describe("GH002: No Generic Link Text", () => {
     });
   });
   describe("failures", () => {
-    test("markdown example", async () => {
+    test("inline", async () => {
       const strings = [
         "[Click here](www.github.com)",
         "[here](www.github.com)",
         "Please [read more](www.github.com)",
         "[more](www.github.com)",
+        "[link](www.github.com)",
         "You may [learn more](www.github.com) at GitHub",
         "[learn more.](www.github.com)",
         "[click here!](www.github.com)",
@@ -38,10 +43,26 @@ describe("GH002: No Generic Link Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(7);
+      expect(failedRules).toHaveLength(8);
       for (const rule of failedRules) {
         expect(rule).toBe("no-generic-link-text");
       }
+    });
+
+    test("additional words can be configured", async () => {
+      const results = await runTest(
+        ["[something](www.github.com)"],
+        noGenericLinkTextRule,
+        // eslint-disable-next-line camelcase
+        { additional_banned_texts: ["something"] }
+      );
+
+      const failedRules = results
+        .map((result) => result.ruleNames)
+        .flat()
+        .filter((name) => !name.includes("GH"));
+
+      expect(failedRules).toHaveLength(1);
     });
   });
 });
