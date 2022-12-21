@@ -49,6 +49,17 @@ describe("GH002: No Generic Link Text", () => {
       }
     });
 
+    test("error message", async () => {
+      const strings = ["[Click here](www.github.com)"];
+
+      const results = await runTest(strings, noGenericLinkTextRule);
+
+      expect(results[0].ruleDescription).toMatch(
+        /Avoid using generic link text like `Learn more` or `Click here`/
+      );
+      expect(results[0].errorDetail).toBe("For link: Click here");
+    });
+
     test("additional words can be configured", async () => {
       const results = await runTest(
         ["[something](www.github.com)"],
