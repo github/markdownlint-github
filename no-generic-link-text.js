@@ -26,6 +26,7 @@ module.exports = {
   tags: ["accessibility", "links"],
   function: function GH002(params, onError) {
     // markdown syntax
+    const allBannedLinkTexts = bannedLinkText.concat(params.config.banned_link_texts || [])
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");
     for (const token of inlineTokens) {
       const { children } = token;
@@ -40,7 +41,7 @@ module.exports = {
           linkText = "";
         } else if (type === "link_close") {
           inLink = false;
-          if (bannedLinkText.includes(stripAndDowncaseText(linkText))) {
+          if (allBannedLinkTexts.includes(stripAndDowncaseText(linkText))) {
             onError({
               lineNumber,
               lineIndex,
