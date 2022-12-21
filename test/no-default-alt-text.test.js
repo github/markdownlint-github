@@ -75,7 +75,7 @@ describe("GH001: No Default Alt Text", () => {
         '<img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
       ];
 
-      const results = await runTest(strings);
+      const results = await runTest(strings, altTextRule);
 
       expect(results[0].ruleDescription).toMatch(
         /Images should not use the MacOS default screenshot filename as alternate text/
