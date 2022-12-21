@@ -25,6 +25,7 @@ describe("usage", () => {
         "no-blanks-blockquote": false,
         "fenced-code-language": true,
         "no-default-alt-text": true,
+        "no-alt-text": true,
       });
     });
 
