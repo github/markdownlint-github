@@ -27,10 +27,10 @@ For now, see our opinions codified in [index.js](./index.js).
       npm install -D @github/markdownlint-github [--@github:registry=https://registry.npmjs.org]
       ```
 
-3. Add/modify your linting script in `package.json`. Modify `--ignore` and other arguments as needed.
+3. Add/modify your linting script in `package.json`. Modify other [CLI arguments](https://github.com/igorshubovych/markdownlint-cli#usage) as necessary. We recommend adding a `.markdownlintignore` file to [configure files to ignore](https://github.com/igorshubovych/markdownlint-cli#ignoring-files).
 
     ```bash
-    markdownlint **/*.{md,mdx} --config .markdownlint.js --rules node_modules/@github/markdownlint-github --ignore node_modules
+    markdownlint '**/*.{md,mdx}' --config .markdownlint.js --rules node_modules/@github/markdownlint-github
     ```
 
 4. Edit `.markdownlint.js` file to suit your needs. Start with
