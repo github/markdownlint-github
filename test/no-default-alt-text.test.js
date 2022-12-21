@@ -75,6 +75,7 @@ describe("GH001: No Default Alt Text", () => {
         expect(rule).toBe(thisRuleName);
       }
     });
+
     test("HTML example", async () => {
       const strings = [
         '<img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
@@ -94,6 +95,28 @@ describe("GH001: No Default Alt Text", () => {
       for (const rule of failedRules) {
         expect(rule).toBe(thisRuleName);
       }
+    });
+
+    test("error message", async () => {
+      const strings = [
+        "![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+        '<img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
+      ];
+
+      const results = await runTest(strings);
+
+      expect(results[0].ruleDescription).toMatch(
+        /Images should not use the MacOS default screenshot filename as alternate text/
+      );
+      expect(results[0].errorDetail).toBe(
+        "For image: Screen Shot 2022-06-26 at 7 41 30 PM"
+      );
+      expect(results[1].ruleDescription).toMatch(
+        /Images should not use the MacOS default screenshot filename as alternate text/
+      );
+      expect(results[1].errorDetail).toBe(
+        'For image: <img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">'
+      );
     });
   });
 });

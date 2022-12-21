@@ -23,7 +23,7 @@ module.exports = {
         if (image.content.match(altTextRegex)) {
           onError({
             lineNumber: image.lineNumber,
-            details: `For image: ${image.content}`,
+            detail: `For image: ${image.content}`,
           });
         }
       }
@@ -35,7 +35,7 @@ module.exports = {
       if (line.match(altTextTagRegex)) {
         onError({
           lineNumber,
-          details: `For image: ${line}`,
+          detail: `For image: ${line}`,
         });
       }
       lineNumber++;
