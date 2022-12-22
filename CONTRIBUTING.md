@@ -41,11 +41,4 @@ We use `jest` tests as well, which should be an equally comfortable development 
 
 ## Publishing
 
-To publish, merge your work to main (after PR process completed).
-
-Manage version and publish on a new branch, and create a PR to merge these changes into main.
-
-```bash
-npm version [major|minor|patch] # alternatively, manage version in package.json
-npm run publish
-```
+The [publish.yml workflow](https://github.com/github/markdownlint-github/actions/workflows/publish.yml) will automatically publish a new release on npm upon creating a [new GitHub release](https://github.com/github/markdownlint-github/releases).
