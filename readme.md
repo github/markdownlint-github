@@ -46,7 +46,7 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 
 3. Add/modify your linting script in `package.json`.
 
-    ```.json
+    ```bash
      markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\"
     ```
 
