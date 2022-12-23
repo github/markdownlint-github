@@ -11,7 +11,7 @@ module.exports = {
   description:
     "Images should not use the MacOS default screenshot filename as alternate text (alt text). If you have not changed this file, try merging main with your branch. For more information see: https://primer.style/design/accessibility/alternative-text-for-images",
   information: new URL(
-    "https://primer.style/design/accessibility/alternative-text-for-images"
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md"
   ),
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
