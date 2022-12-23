@@ -1,4 +1,4 @@
-const { stripAndDowncaseText } = require("./helpers/strip-and-downcase-text");
+const { stripAndDowncaseText } = require("../helpers/strip-and-downcase-text");
 
 const bannedLinkText = [
   "read more",

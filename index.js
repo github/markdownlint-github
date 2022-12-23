@@ -2,14 +2,11 @@ const _ = require("lodash");
 
 const accessibilityRules = require("./style/accessibility.json");
 const base = require("./style/base.json");
-const noDefaultAltText = require("./no-default-alt-text");
-const noGenericLinkText = require("./no-generic-link-text");
+const gitHubCustomRules = require("./src/rules/index").rules;
 
-const customRules = [noDefaultAltText, noGenericLinkText];
+module.exports = [...gitHubCustomRules];
 
-module.exports = [...customRules];
-
-for (const rule of customRules) {
+for (const rule of gitHubCustomRules) {
   base[rule.names[1]] = true;
 }
 
