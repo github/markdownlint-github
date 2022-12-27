@@ -75,5 +75,17 @@ describe("GH002: No Generic Link Text", () => {
 
       expect(failedRules).toHaveLength(1);
     });
+
+    test("exceptions can be configured", async () => {
+      const results = await runTest(
+        ["[Link](primer.style/components/Link)"],
+        noGenericLinkTextRule,
+        { exceptions: ["link"] }
+      );
+
+      for (const result of results) {
+        expect(result).not.toBeDefined();
+      }
+    });
   });
 });
