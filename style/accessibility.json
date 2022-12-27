@@ -4,6 +4,7 @@
     "no-duplicate-header": true,
     "no-emphasis-as-header": true,
     "no-generic-link-text": true,
+    "no-heading-increment": true,
     "no-space-in-links": false,
     "ol-prefix": "ordered",
     "single-h1": true,
