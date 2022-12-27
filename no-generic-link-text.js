@@ -19,9 +19,15 @@ module.exports = {
   tags: ["accessibility", "links"],
   function: function GH002(params, onError) {
     // markdown syntax
-    const allBannedLinkTexts = bannedLinkText.concat(
+    let bannedLinkTexts = bannedLinkText.concat(
       params.config.additional_banned_texts || []
     );
+    const exceptions = params.config.exceptions || [];
+    if (exceptions.length > 0) {
+      bannedLinkTexts = bannedLinkTexts.filter(
+        (text) => !exceptions.includes(text)
+      );
+    }
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");
     for (const token of inlineTokens) {
       const { children } = token;
@@ -35,7 +41,7 @@ module.exports = {
           linkText = "";
         } else if (type === "link_close") {
           inLink = false;
-          if (allBannedLinkTexts.includes(stripAndDowncaseText(linkText))) {
+          if (bannedLinkTexts.includes(stripAndDowncaseText(linkText))) {
             onError({
               lineNumber: child.lineNumber,
               detail: `For link: ${linkText}`,
