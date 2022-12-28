@@ -23,7 +23,9 @@ Learn more at [Primer: Alternative text for images](https://primer.style/design/
 ### Correct 👍
 
 ```md
-![](https://user-images.githubusercontent.com/abcdef.png)
+<!-- Mark decorative images with an empty string -->
+
+![""](https://user-images.githubusercontent.com/abcdef.png)
 ```
 
 ```md
@@ -31,7 +33,6 @@ Learn more at [Primer: Alternative text for images](https://primer.style/design/
 ```
 
 ```md
-<!-- Mark decorative images with an empty string -->
 <img alt="A GitHub Discussion page with the heading structure visually surfaced with a text overlay" src="https://user-images.githubusercontent.com/xyz.png">
 ```
 
