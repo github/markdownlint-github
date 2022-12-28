@@ -4,7 +4,7 @@
 
 Avoid setting generic link text like, "Click here", "Read more", and "Learn more" which do not make sense when read out of context.
 
-Screen reader users often tab through links on a page to quickly find content without needing to listen to the full page. When link text is too generic, it becomes difficult to quickly identify the destination of the link.
+Screen reader users often tab through links on a page to quickly find content without needing to listen to the full page. When link text does not clearly describe the actual linked content, it becomes difficult to quickly identify whether it's worth following the link.
 
 Ensure that your link text is descriptive and the purpose of the link is clear even when read out of context of surrounding text.
 
