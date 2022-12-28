@@ -22,8 +22,8 @@ However, others of these rules should **NOT** be disabled because they encourage
 
 The following are custom rules defined in this plugin.
 
-- **GH001** _no-default-alt-text_
-- **GH002** _no-generic-link-text_
+- [**GH001** _no-default-alt-text_](./docs/rules/GH001-no-default-alt-text.md)
+- [**GH002** _no-generic-link-text_](./docs/rules/GH002-no-generic-link-text.md)
 
 See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--aliases) for documentation on rules pulled in from `markdownlint`.
 

@@ -14,7 +14,7 @@ module.exports = {
   description:
     "Avoid using generic link text like `Learn more` or `Click here`",
   information: new URL(
-    "https://primer.style/design/accessibility/links#writing-link-text"
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH002-no-generic-link-text.md"
   ),
   tags: ["accessibility", "links"],
   function: function GH002(params, onError) {

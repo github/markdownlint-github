@@ -9,7 +9,7 @@
   "scripts": {
     "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
     "test": "npm run lint && jest",
-    "lint": "markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\"  \"!test/example.md\" && eslint .",
+    "lint": "markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\" \"!docs/rules\" \"!test/example.md\" && eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
