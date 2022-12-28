@@ -33,6 +33,8 @@ describe("GH001: No Default Alt Text", () => {
         "![ScreenShot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screen shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+        "![image](https://user-images.githubusercontent.com/abcdef.png)",
+        "![Image](https://user-images.githubusercontent.com/abcdef.png)",
       ];
 
       const results = await runTest(strings, altTextRule);
@@ -42,7 +44,7 @@ describe("GH001: No Default Alt Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(4);
+      expect(failedRules).toHaveLength(6);
       for (const rule of failedRules) {
         expect(rule).toBe("no-default-alt-text");
       }
@@ -54,6 +56,8 @@ describe("GH001: No Default Alt Text", () => {
         '<img alt="ScreenShot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screen shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screenshot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
+        '<img alt="Image" src="https://user-images.githubusercontent.com/abcdef.png">',
+        '<img alt="image" src="https://user-images.githubusercontent.com/abcdef.png">',
       ];
 
       const results = await runTest(strings, altTextRule);
@@ -63,7 +67,7 @@ describe("GH001: No Default Alt Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(4);
+      expect(failedRules).toHaveLength(6);
       for (const rule of failedRules) {
         expect(rule).toBe("no-default-alt-text");
       }
@@ -78,13 +82,13 @@ describe("GH001: No Default Alt Text", () => {
       const results = await runTest(strings, altTextRule);
 
       expect(results[0].ruleDescription).toMatch(
-        /Images should not use the MacOS default screenshot filename as alternate text/
+        "Images should set meaningful alternative text (alt text), and not use the macOS default screenshot filename or `Image`."
       );
       expect(results[0].errorDetail).toBe(
         "For image: Screen Shot 2022-06-26 at 7 41 30 PM"
       );
       expect(results[1].ruleDescription).toMatch(
-        /Images should not use the MacOS default screenshot filename as alternate text/
+        "Images should set meaningful alternative text (alt text), and not use the macOS default screenshot filename or `Image`."
       );
       expect(results[1].errorDetail).toBe(
         'For image: <img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">'
