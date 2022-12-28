@@ -4,7 +4,7 @@
 
 Images should not use the macOS default screenshot filename as alternate text (alt text) which does not convey any meaningful information.
 
-Alternative text should concisely describe what is conveyed in the image. If the image is decorative, the alternative text should be set to an empty string.
+Alternative text should concisely describe what is conveyed in the image. If the image is decorative, the alternative text should be set to an empty string (`alt=""`).
 
 Learn more at [Primer: Alternative text for images](https://primer.style/design/accessibility/alternative-text-for-images).
 
