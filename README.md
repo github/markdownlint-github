@@ -1,22 +1,13 @@
 # GitHub Flavored Markdown Linting
 
-We are using the [`markdownlint`](https://github.com/DavidAnson/markdownlint) library (via [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) and adding our opinions and custom rules to it.
 
-To review behaviors supported by `markdownlint`, particularly how to enable or disable rules, see [`markdownlint-cli2` configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration).
+This repository provides GitHub's recommended [`markdownlint`](https://github.com/DavidAnson/markdownlint) configurations, and additional rules for use on GitHub open source and internal projects.
 
 ## Opinions
 
-At GitHub, we have opinions about how our markdown should be written.
-
 In addition to defaults defined by `markdownlint`, we use this repository to enforce rules not defined by default, including our own custom rules.
 
-See our opinions codified in [index.js](./index.js).
-
-### Should I disable rules enabled by this plugin?
-
-This plugin will enable the defaults defined by `markdownlint`. Several of these pertain to stylistic practices. You may choose to disable these rules if you determine it doesn't provide value for your project.
-
-However, others of these rules should **NOT** be disabled because they encourage best accessibility practices. Disabling these rules will negatively impact accessibility. These rules are specified in [accessibility.json](./accessibility.json).
+See opinions codified in [index.js](./index.js).
 
 ## Rules
 
@@ -29,19 +20,20 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 
 ## Usage
 
-**Note**: We recommend configuring [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) over `markdownlint-cli` for compatibility with the [vscode-markdownlint](https://github.com/DavidAnson/vscode-markdownlint) plugin.
+**Important**: We support the use of `markdownlint` through [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) instead of `markdownlint-cli` for compatability with the [`vscode-markdownlint`](https://github.com/DavidAnson/vscode-markdownlint) plugin.
 
-1. Create a `.markdownlint-cli2.cjs` file in the root of your repository
+1. Create a `.markdownlint-cli2.cjs` file in the root of your repository.
 
     ```bash
     touch .markdownlint-cli2.cjs
     ```
 
-2. Install packages
+2. Install packages.
 
     - ```bash
       npm install -D markdownlint-cli2 # if updating existing package, check for updates
       npm install -D @github/markdownlint-github [--@github:registry=https://registry.npmjs.org]
+      npm install -D markdownlint-cli2-formatter-pretty
       ```
 
 3. Add/modify your linting script in `package.json`.
@@ -57,22 +49,39 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
     module.exports = {
         config: options,
         customRules: ["@github/markdownlint-github"],
+        outputFormatters: [
+          [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ] // ensures the error message includes a link to the rule documentation
+        ]
     }
     ```
 
-    Or, you can also pass in configuration options that you wish to override the default. This looks like:
+    Or, you can also pass in configuration options that you wish to override the default. Read more at [Customizing configurations](#customizing-configurations). 
+    This looks like:
 
     ```js
     const options = require('@github/markdownlint-github').init({
-        'fenced-code-language': false,
+        'fenced-code-language': false, // Custom overrides
     })
     module.exports = {
         config: options,
         customRules: ["@github/markdownlint-github"],
+        outputFormatters: [
+          [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ]
+        ]
     }
     ```
 
-5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.cjs` configuration. When you make edits to your configuartion, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs.
+5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.cjs` configuration. When you make edits to your configuartion, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs. If your projects runs on Codespaces, consider adding this extension to your `.devcontainer/devcontainer.json` so that this extension is installed to new Codespaces by default.
+
+### Customizing configurations
+
+You may determine that the defaults set by this plugin are not suitable for your project.
+
+This plugin will pull in the the defaults defined by `markdownlint`, several of which pertain to stylistic practices. You may choose to disable these rules if you determine it doesn't provide value for your project.
+
+However, others of these rules should **NOT** be disabled because they encourage best accessibility practices. Disabling these rules will negatively impact accessibility. These rules are defined in [accessibility.json](./accessibility.json).
+
+To review configurations supported by `markdownlint`, see [`markdownlint-cli2` configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration).
 
 ### Advanced: Adding custom rules in your codebase
 
