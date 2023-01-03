@@ -71,7 +71,7 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
     }
     ```
 
-5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.cjs` configuration. When you make edits to your configuartion, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs. If your projects runs on Codespaces, consider adding this extension to your `.devcontainer/devcontainer.json` so that this extension is installed to new Codespaces by default.
+5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.cjs` configuration. When you make edits to your configuration, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs. If your project runs on Codespaces, consider adding this extension to your `.devcontainer/devcontainer.json` so that this extension is installed to new Codespaces by default.
 
 ### Customizing configurations
 
