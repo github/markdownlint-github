@@ -1,5 +1,4 @@
-# GitHub Flavored Markdown Linting
-
+# Markdownlint-github
 
 This repository provides GitHub's recommended [`markdownlint`](https://github.com/DavidAnson/markdownlint) configurations, and additional rules for use on GitHub open source and internal projects.
 
@@ -20,7 +19,7 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 
 ## Usage
 
-**Important**: We support the use of `markdownlint` through [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) instead of `markdownlint-cli` for compatability with the [`vscode-markdownlint`](https://github.com/DavidAnson/vscode-markdownlint) plugin.
+**Important**: We support the use of `markdownlint` through [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) instead of `markdownlint-cli` for compatibility with the [`vscode-markdownlint`](https://github.com/DavidAnson/vscode-markdownlint) plugin.
 
 1. Create a `.markdownlint-cli2.cjs` file in the root of your repository.
 
@@ -99,6 +98,14 @@ module.exports = require('@github/markdownlint-github').init({
 See [`markdownlint-cli2` configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration).
 
 Consider upstreaming any rules you find useful as proposals to this repository.
+
+## License
+
+This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE.txt) for the full terms.
+
+## Maintainers
+
+See [CODEOWNERS][./CODEOWNERS].
 
 ## Contributing
 
