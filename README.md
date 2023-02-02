@@ -1,4 +1,4 @@
-# markdownlint-github
+# Markdownlint-github
 
 This repository provides GitHub's recommended [`markdownlint`](https://github.com/DavidAnson/markdownlint) configurations, and additional rules for use on GitHub open source and internal projects.
 
