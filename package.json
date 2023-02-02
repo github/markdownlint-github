@@ -1,7 +1,7 @@
 {
   "name": "@github/markdownlint-github",
   "version": "0.1.0",
-  "description": "",
+  "description": "An opinionated collection of markdownlint rules used by GitHub.",
   "main": "index.js",
   "directories": {
     "test": "test"
