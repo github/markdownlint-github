@@ -1,12 +1,14 @@
 // Regex to match alt text that is the same as the default image filename
 // e.g. "Screen Shot 2020-10-20 at 2 52 27 PM"
 // e.g. "Screenshot 2020-10-20 at 2 52 27 PM"
+// e.g. "Clean Shot 2020-10-20 @45x"
+// e.g. "image"
 const defaultMacOsScreenshotMarkdownRegex =
-  /^Screen ?[S|s]hot \d{4}-\d{2}-\d{2} at \d \d{2} \d{2} [A|P]M$/gi;
+  /^(Screen|Clean) ?[S|s]hot \d{4}-\d{2}-\d{2}/gi;
 const imageMarkdownRegex = /^image$/i;
 
 const defaultMacOsScreenshotHtmlRegex =
-  /alt="Screen ?[S|s]hot \d{4}-\d{2}-\d{2} at \d \d{2} \d{2} [A|P]M"/gi;
+  /alt="(Screen|Clean) ?[S|s]hot \d{4}-\d{2}-\d{2}/gi;
 const imageHtmlRegex = /alt="image"/i;
 
 module.exports = {
