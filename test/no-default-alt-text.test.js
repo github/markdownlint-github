@@ -33,6 +33,7 @@ describe("GH001: No Default Alt Text", () => {
         "![ScreenShot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screen shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+        "![Clean Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![image](https://user-images.githubusercontent.com/abcdef.png)",
         "![Image](https://user-images.githubusercontent.com/abcdef.png)",
       ];
@@ -44,7 +45,7 @@ describe("GH001: No Default Alt Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(6);
+      expect(failedRules).toHaveLength(7);
       for (const rule of failedRules) {
         expect(rule).toBe("no-default-alt-text");
       }
@@ -56,6 +57,7 @@ describe("GH001: No Default Alt Text", () => {
         '<img alt="ScreenShot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screen shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screenshot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
+        '<img alt="Clean Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Image" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="image" src="https://user-images.githubusercontent.com/abcdef.png">',
       ];
@@ -67,7 +69,7 @@ describe("GH001: No Default Alt Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(6);
+      expect(failedRules).toHaveLength(7);
       for (const rule of failedRules) {
         expect(rule).toBe("no-default-alt-text");
       }
