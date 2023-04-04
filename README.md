@@ -78,7 +78,7 @@ You may determine that the defaults set by this plugin are not suitable for your
 
 This plugin will pull in the the defaults defined by `markdownlint`, several of which pertain to stylistic practices. You may choose to disable these rules if you determine it doesn't provide value for your project.
 
-However, others of these rules should **NOT** be disabled because they encourage best accessibility practices. Disabling these rules will negatively impact accessibility. These rules are defined in [accessibility.json](./accessibility.json).
+However, others of these rules should **NOT** be disabled because they encourage best accessibility practices. Disabling these rules will negatively impact accessibility. These rules are defined in [accessibility.json](./style/accessibility.json).
 
 To review configurations supported by `markdownlint`, see [`markdownlint-cli2` configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration).
 
