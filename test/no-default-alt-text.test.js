@@ -86,11 +86,11 @@ describe("GH001: No Default Alt Text", () => {
       expect(results[0].ruleDescription).toMatch(
         "Images should have meaningful alternative text (alt text)"
       );
-      expect(results[0].errorRange).toEqual([3, 36])
+      expect(results[0].errorRange).toEqual([3, 36]);
       expect(results[1].ruleDescription).toMatch(
         "Images should have meaningful alternative text (alt text)"
       );
-      expect(results[1].errorRange).toEqual([11, 36])
+      expect(results[1].errorRange).toEqual([11, 36]);
     });
   });
 });
