@@ -84,17 +84,13 @@ describe("GH001: No Default Alt Text", () => {
       const results = await runTest(strings, altTextRule);
 
       expect(results[0].ruleDescription).toMatch(
-        "Images should set meaningful alternative text (alt text), and not use the macOS default screenshot filename or `Image`."
+        "Images should have meaningful alternative text (alt text)"
       );
-      expect(results[0].errorDetail).toBe(
-        "For image: Screen Shot 2022-06-26 at 7 41 30 PM"
-      );
+      expect(results[0].errorRange).toEqual([3, 36])
       expect(results[1].ruleDescription).toMatch(
-        "Images should set meaningful alternative text (alt text), and not use the macOS default screenshot filename or `Image`."
+        "Images should have meaningful alternative text (alt text)"
       );
-      expect(results[1].errorDetail).toBe(
-        'For image: <img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">'
-      );
+      expect(results[1].errorRange).toEqual([11, 36])
     });
   });
 });

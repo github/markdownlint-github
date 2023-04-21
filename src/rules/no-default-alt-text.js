@@ -3,53 +3,33 @@
 // e.g. "Screenshot 2020-10-20 at 2 52 27 PM"
 // e.g. "Clean Shot 2020-10-20 @45x"
 // e.g. "image"
-const defaultMacOsScreenshotMarkdownRegex =
-  /^(Screen|Clean) ?[S|s]hot \d{4}-\d{2}-\d{2}/gi;
-const imageMarkdownRegex = /^image$/i;
+// e.g. "14352435"
+const defaultScreenshotRegex = "(?:screen|clean) ?shot \\d{4}-\\d{2}-\\d{2}[^'\"\\]]*"
+const imageRegex = "image";
+const combinedRegex = `(${[defaultScreenshotRegex, imageRegex].join("|")})`
 
-const defaultMacOsScreenshotHtmlRegex =
-  /alt="(Screen|Clean) ?[S|s]hot \d{4}-\d{2}-\d{2}/gi;
-const imageHtmlRegex = /alt="image"/i;
+const markdownAltRegex = new RegExp(`!\\[${combinedRegex}\\]\\(.*\\)`, "gid")
+const htmlAltRegex = new RegExp(`alt=["']${combinedRegex}["']`, "gid")
 
 module.exports = {
   names: ["GH001", "no-default-alt-text"],
-  description:
-    "Images should set meaningful alternative text (alt text), and not use the macOS default screenshot filename or `Image`.",
+  description: "Images should have meaningful alternative text (alt text)",
   information: new URL(
     "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md"
   ),
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
-    // markdown syntax
-    const inlineTokens = params.tokens.filter((t) => t.type === "inline");
-    for (const token of inlineTokens) {
-      const imageTokens = token.children.filter((t) => t.type === "image");
-      for (const image of imageTokens) {
-        if (
-          image.content.match(defaultMacOsScreenshotMarkdownRegex) ||
-          image.content.match(imageMarkdownRegex)
-        ) {
-          onError({
-            lineNumber: image.lineNumber,
-            detail: `For image: ${image.content}`,
-          });
-        }
-      }
-    }
+    for (const [lineIndex, line] of params.lines.entries()) {
+      for (const match of [...line.matchAll(markdownAltRegex), ...line.matchAll(htmlAltRegex)]) {
+        // The alt text is contained in the first capture group
+        const altText = match[1]
+        const [startIndex] = match.indices[1]
 
-    // html syntax
-    let lineNumber = 1;
-    for (const line of params.lines) {
-      if (
-        line.match(defaultMacOsScreenshotHtmlRegex) ||
-        line.match(imageHtmlRegex)
-      ) {
         onError({
-          lineNumber,
-          detail: `For image: ${line}`,
-        });
+          lineNumber: lineIndex + 1,
+          range: [startIndex + 1, altText.length],
+        })
       }
-      lineNumber++;
     }
   },
 };
