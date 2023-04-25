@@ -12,8 +12,8 @@ See opinions codified in [index.js](./index.js).
 
 The following are custom rules defined in this plugin.
 
-- [**GH001** _no-default-alt-text_](./docs/rules/GH001-no-default-alt-text.md)
-- [**GH002** _no-generic-link-text_](./docs/rules/GH002-no-generic-link-text.md)
+* [**GH001** _no-default-alt-text_](./docs/rules/GH001-no-default-alt-text.md)
+* [**GH002** _no-generic-link-text_](./docs/rules/GH002-no-generic-link-text.md)
 
 See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--aliases) for documentation on rules pulled in from `markdownlint`.
 
@@ -29,11 +29,11 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 
 2. Install packages.
 
-    - ```bash
-      npm install -D markdownlint-cli2 # if updating existing package, check for updates
-      npm install -D @github/markdownlint-github [--@github:registry=https://registry.npmjs.org]
-      npm install -D markdownlint-cli2-formatter-pretty
-      ```
+    ```bash
+    npm install -D markdownlint-cli2 # if updating existing package, check for updates
+    npm install -D @github/markdownlint-github [--@github:registry=https://registry.npmjs.org]
+    npm install -D markdownlint-cli2-formatter-pretty
+    ```
 
 3. Add/modify your linting script in `package.json`.
 
