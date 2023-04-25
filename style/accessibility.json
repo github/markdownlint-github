@@ -8,5 +8,7 @@
     "no-space-in-links": false,
     "ol-prefix": "ordered",
     "single-h1": true,
-    "ul-style": true
+    "ul-style": {
+        "style": "asterisk"
+    }
 }
