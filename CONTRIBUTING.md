@@ -6,8 +6,8 @@ Thank you for your interest in contributing.
 
 Depending on your needs, you may have one of two development paths:
 
-- via integrating with an existing usage (ideal for modifying the interface of our rules)
-- via unit testing (ideal for adding a new rule)
+* via integrating with an existing usage (ideal for modifying the interface of our rules)
+* via unit testing (ideal for adding a new rule)
 
 For that reason we've included two paths to develop. Feel free to use either, or both.
 
@@ -32,8 +32,8 @@ It may be useful to work on this in tandem with a codebase that uses the rules. 
     If you go to the `node_modules` directory in your codebase and try to navigate into the package, you'll notice that whatever changes you make in your local development directory will be reflected in the codebase.
 
 3. Reset symlinks at any time by reversing the steps via `npm unlink`.
-    - in your codebase: `npm unlink @github/markdownlint-github`
-    - in this directory: `npm unlink`
+    * in your codebase: `npm unlink @github/markdownlint-github`
+    * in this directory: `npm unlink`
 
 ### Unit and Interface Testing
 
