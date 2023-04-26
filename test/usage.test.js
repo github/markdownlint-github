@@ -19,7 +19,9 @@ describe("usage", () => {
         "no-emphasis-as-header": true,
         "no-heading-increment": true,
         "no-generic-link-text": true,
-        "ul-style": true,
+        "ul-style": {
+          style: "asterisk",
+        },
         default: true,
         "no-inline-html": false,
         "no-bare-urls": false,
