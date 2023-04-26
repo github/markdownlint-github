@@ -1,11 +1,12 @@
-// Regex to match alt text that is the same as the default image filename
-// e.g. "Screen Shot 2020-10-20 at 2 52 27 PM"
-// e.g. "Screenshot 2020-10-20 at 2 52 27 PM"
-// e.g. "Clean Shot 2020-10-20 @45x"
-// e.g. "image"
-// e.g. "14352435"
+/**
+ * Examples:
+ * * "Screen Shot 2020-10-20 at 2 52 27 PM"
+ * * "Screenshot 2020-10-20 at 2 52 27 PM"
+ * * "Clean Shot 2020-10-20 @45x"
+ */ 
 const defaultScreenshotRegex =
-  "(?:screen|clean) ?shot \\d{4}-\\d{2}-\\d{2}[^'\"\\]]*";
+"(?:screen|clean) ?shot \\d{4}-\\d{2}-\\d{2}[^'\"\\]]*";
+
 const imageRegex = "image";
 const combinedRegex = `(${[defaultScreenshotRegex, imageRegex].join("|")})`;
 
