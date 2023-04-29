@@ -17,7 +17,7 @@ describe("usage", () => {
         "no-space-in-links": false,
         "single-h1": true,
         "no-emphasis-as-header": true,
-        "no-heading-increment": true,
+        "heading-increment": true,
         "no-generic-link-text": true,
         "ul-style": {
           style: "asterisk",
