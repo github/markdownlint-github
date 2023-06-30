@@ -9,4 +9,11 @@ const options = require('./index.js').init({
 module.exports = {
     config: options,
     customRules: ["./index.js"],
+    outputFormatters: [
+        ['markdownlint-cli2-formatter-pretty', {appendLink: true}], // ensures the error message includes a link to the rule documentation
+        [
+          'markdownlint-cli2-formatter-json',
+          {name: 'markdown-violations.json', spaces: 1}
+        ]
+    ]
 }
