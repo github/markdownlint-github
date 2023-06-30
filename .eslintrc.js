@@ -14,5 +14,6 @@ module.exports = {
     "import/no-commonjs": "off",
     "filenames/match-regex": "off",
     "i18n-text/no-en": "off",
+    "eslint-comments/no-use": "off",
   },
 };
