@@ -53,15 +53,15 @@ describe("usage", () => {
       // confirm config is set by consumer
       expect(options).toHaveProperty(
         toTestOptions[0],
-        consumerConfig[toTestOptions[0]]
+        consumerConfig[toTestOptions[0]],
       );
       expect(options).toHaveProperty(
         toTestOptions[1],
-        consumerConfig[toTestOptions[1]]
+        consumerConfig[toTestOptions[1]],
       );
       expect(options).toHaveProperty(
         toTestOptions[2],
-        consumerConfig[toTestOptions[2]]
+        consumerConfig[toTestOptions[2]],
       );
     });
   });
