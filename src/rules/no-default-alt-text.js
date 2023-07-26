@@ -17,7 +17,7 @@ module.exports = {
   names: ["GH001", "no-default-alt-text"],
   description: "Images should have meaningful alternative text (alt text)",
   information: new URL(
-    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md"
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md",
   ),
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
