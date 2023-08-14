@@ -19,7 +19,7 @@
     "eslint": "^8.22.0",
     "eslint-plugin-github": "^4.3.7",
     "jest": "^29.5.0",
-    "markdownlint": "^0.29.0",
+    "markdownlint": "^0.30.0",
     "markdownlint-cli2": "^0.8.1"
   },
   "repository": {
