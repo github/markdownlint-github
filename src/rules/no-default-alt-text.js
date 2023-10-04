@@ -21,19 +21,38 @@ module.exports = {
   ),
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
-    for (const [lineIndex, line] of params.lines.entries()) {
-      for (const match of [
-        ...line.matchAll(markdownAltRegex),
-        ...line.matchAll(htmlAltRegex),
-      ]) {
-        // The alt text is contained in the first capture group
-        const altText = match[1];
-        const [startIndex] = match.indices[1];
+    const htmlTagsWithImages = params.parsers.markdownit.tokens.filter(
+      (token) => {
+        return token.type === "html_block" && token.content.includes("<img");
+      },
+    );
+    const inlineImages = params.parsers.markdownit.tokens.filter(
+      (token) =>
+        token.type === "inline" &&
+        token.children.some((child) => child.type === "image"),
+    );
 
-        onError({
-          lineNumber: lineIndex + 1,
-          range: [startIndex + 1, altText.length],
-        });
+    for (const token of [...htmlTagsWithImages, ...inlineImages]) {
+      const lineRange = token.map;
+      const lineNumber = token.lineNumber;
+      const lines = params.lines.slice(lineRange[0], lineRange[1]);
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        let matches;
+        if (token.type === "inline") {
+          matches = line.matchAll(markdownAltRegex);
+        } else {
+          matches = line.matchAll(htmlAltRegex);
+        }
+        for (const match of matches) {
+          const altText = match[1];
+          const [startIndex] = match.indices[1];
+          onError({
+            lineNumber: lineNumber + i,
+            range: [startIndex + 1, altText.length],
+          });
+        }
       }
     }
   },

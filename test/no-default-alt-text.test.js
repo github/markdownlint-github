@@ -5,6 +5,8 @@ describe("GH001: No Default Alt Text", () => {
   describe("successes", () => {
     test("inline", async () => {
       const strings = [
+        "```![image](https://user-images.githubusercontent.com/abcdef.png)```",
+        "`![Image](https://user-images.githubusercontent.com/abcdef.png)`",
         "![Chart with a single root node reading 'Example'](https://user-images.githubusercontent.com/abcdef.png)",
       ];
 
