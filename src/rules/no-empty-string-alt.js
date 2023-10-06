@@ -22,7 +22,7 @@ module.exports = {
         token.children.some((child) => child.type === "image"),
     );
 
-    const htmlAltRegex = /alt=['"]['"]/gid;
+    const htmlAltRegex = new RegExp(/alt=['"]['"]/, "gid");
     const markdownAltRegex = new RegExp(/!\[""\]|!\[''\]/, "gid");
 
     for (const token of [...htmlTagsWithImages, ...inlineImages]) {
