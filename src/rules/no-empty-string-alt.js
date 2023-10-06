@@ -16,28 +16,17 @@ module.exports = {
         );
       },
     );
-    const inlineImages = params.parsers.markdownit.tokens.filter(
-      (token) =>
-        token.type === "inline" &&
-        token.children.some((child) => child.type === "image"),
-    );
 
     const htmlAltRegex = new RegExp(/alt=['"]['"]/, "gid");
-    const markdownAltRegex = new RegExp(/!\[""\]|!\[''\]/, "gid");
 
-    for (const token of [...htmlTagsWithImages, ...inlineImages]) {
+    for (const token of htmlTagsWithImages) {
       const lineRange = token.map;
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        let matches;
-        if (token.type === "inline") {
-          matches = line.matchAll(markdownAltRegex);
-        } else {
-          matches = line.matchAll(htmlAltRegex);
-        }
+        const matches = line.matchAll(htmlAltRegex);
         for (const match of matches) {
           const matchingContent = match[0];
           const startIndex = match.indices[0][0];
