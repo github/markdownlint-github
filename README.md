@@ -14,6 +14,7 @@ The following are custom rules defined in this plugin.
 
 * [**GH001** _no-default-alt-text_](./docs/rules/GH001-no-default-alt-text.md)
 * [**GH002** _no-generic-link-text_](./docs/rules/GH002-no-generic-link-text.md)
+* [**GH002** _no-empty-alt-text_](./docs/rules/GH002-no-empty-alt-text.md)
 
 See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--aliases) for documentation on rules pulled in from `markdownlint`.
 
