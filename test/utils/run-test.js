@@ -11,7 +11,7 @@ async function runTest(strings, rule, ruleConfig) {
     customRules: [rule],
   };
 
-  return await Promise.all(
+  const results = await Promise.all(
     strings.map((variation) => {
       const thisTestConfig = {
         ...config,
@@ -21,11 +21,13 @@ async function runTest(strings, rule, ruleConfig) {
       return new Promise((resolve, reject) => {
         markdownlint(thisTestConfig, (err, result) => {
           if (err) reject(err);
-          resolve(result[0][0]);
+          resolve(result[0]);
         });
       });
     }),
   );
+
+  return results.flat();
 }
 
 exports.runTest = runTest;

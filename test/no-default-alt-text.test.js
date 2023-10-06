@@ -11,10 +11,7 @@ describe("GH001: No Default Alt Text", () => {
       ];
 
       const results = await runTest(strings, altTextRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results.length).toBe(0);
     });
     test("html image", async () => {
       const strings = [
@@ -22,10 +19,7 @@ describe("GH001: No Default Alt Text", () => {
       ];
 
       const results = await runTest(strings, altTextRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results.length).toBe(0);
     });
   });
   describe("failures", () => {
