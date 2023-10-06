@@ -6,7 +6,7 @@ describe("GH003: No Empty Alt Text", () => {
     test("html image", async () => {
       const strings = [
         '<img alt="A helpful description" src="https://user-images.githubusercontent.com/abcdef.png">',
-        "`<img alt='' src='image.png'`", // code block
+        "`<img alt='' src='image.png'>`", // code block
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
