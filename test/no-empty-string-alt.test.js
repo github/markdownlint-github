@@ -6,6 +6,8 @@ describe("GH003: No Empty String Alt", () => {
     test("inline", async () => {
       const strings = [
         "![Chart with a single root node reading 'Example'](https://user-images.githubusercontent.com/abcdef.png)",
+        "`![''](image.png)`", // code block
+        '`![""](image.png)`', // code block
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
@@ -17,6 +19,7 @@ describe("GH003: No Empty String Alt", () => {
     test("html image", async () => {
       const strings = [
         '<img alt="A helpful description" src="https://user-images.githubusercontent.com/abcdef.png">',
+        "`<img alt='' src='image.png'`", // code block
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
@@ -76,9 +79,12 @@ describe("GH003: No Empty String Alt", () => {
       expect(results[0].ruleDescription).toMatch(
         "Please provide an alternative text for the image.",
       );
+      expect(results[0].errorRange).toEqual([1, 5]);
+
       expect(results[1].ruleDescription).toMatch(
         "Please provide an alternative text for the image.",
       );
+      expect(results[1].errorRange).toEqual([6, 6]);
     });
   });
 });

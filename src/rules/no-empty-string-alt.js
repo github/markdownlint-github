@@ -8,7 +8,12 @@ module.exports = {
   function: function GH003(params, onError) {
     const htmlTagsWithImages = params.parsers.markdownit.tokens.filter(
       (token) => {
-        return token.type === "html_block" && token.content.includes("<img");
+        return (
+          (token.type === "html_block" && token.content.includes("<img")) ||
+          (token.type === "inline" &&
+            token.content.includes("<img") &&
+            token.children.some((child) => child.type === "html_inline"))
+        );
       },
     );
     const inlineImages = params.parsers.markdownit.tokens.filter(
@@ -17,8 +22,8 @@ module.exports = {
         token.children.some((child) => child.type === "image"),
     );
 
-    const htmlAltRegex = new RegExp(/alt=""|alt=''/i);
-    const markdownAltRegex = new RegExp(/!\[""\]|!\[''\]/i);
+    const htmlAltRegex = new RegExp(/alt=""|alt=''/, "gid");
+    const markdownAltRegex = new RegExp(/!\[""\]|!\[''\]/, "gid");
 
     for (const token of [...htmlTagsWithImages, ...inlineImages]) {
       const lineRange = token.map;
@@ -27,15 +32,18 @@ module.exports = {
 
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        let fails;
+        let matches;
         if (token.type === "inline") {
-          fails = markdownAltRegex.test(line);
+          matches = line.matchAll(markdownAltRegex);
         } else {
-          fails = htmlAltRegex.test(line);
+          matches = line.matchAll(htmlAltRegex);
         }
-        if (fails) {
+        for (const match of matches) {
+          const matchingContent = match[0];
+          const startIndex = match.indices[0][0];
           onError({
             lineNumber: lineNumber + i,
+            range: [startIndex + 1, matchingContent.length],
           });
         }
       }
