@@ -2,6 +2,6 @@ module.exports = {
   rules: [
     require("./no-default-alt-text"),
     require("./no-generic-link-text"),
-    require("./no-empty-string-alt"),
+    require("./no-empty-alt-text"),
   ],
 };

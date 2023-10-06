@@ -8,7 +8,7 @@ describe("usage", () => {
 
       expect(rules[0].names).toEqual(["GH001", "no-default-alt-text"]);
       expect(rules[1].names).toEqual(["GH002", "no-generic-link-text"]);
-      expect(rules[2].names).toEqual(["GH003", "no-empty-string-alt"]);
+      expect(rules[2].names).toEqual(["GH003", "no-empty-alt-text"]);
     });
   });
   describe("init method", () => {
@@ -20,7 +20,7 @@ describe("usage", () => {
         "no-space-in-links": false,
         "single-h1": true,
         "no-emphasis-as-header": true,
-        "no-empty-string-alt": false,
+        "no-empty-alt-text": false,
         "heading-increment": true,
         "no-generic-link-text": true,
         "ul-style": {

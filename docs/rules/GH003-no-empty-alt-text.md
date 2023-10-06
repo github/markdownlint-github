@@ -1,4 +1,4 @@
-# GH003 No empty string alt
+# GH003 No Empty Alt Text
 
 ## Rule details
 

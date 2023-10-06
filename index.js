@@ -6,7 +6,7 @@ const gitHubCustomRules = require("./src/rules/index").rules;
 
 module.exports = [...gitHubCustomRules];
 
-const offByDefault = ["no-empty-string-alt"];
+const offByDefault = ["no-empty-alt-text"];
 
 for (const rule of gitHubCustomRules) {
   const ruleName = rule.names[1];

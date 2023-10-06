@@ -1,7 +1,7 @@
-const noEmptyStringAltRule = require("../src/rules/no-empty-string-alt");
+const noEmptyStringAltRule = require("../src/rules/no-empty-alt-text");
 const runTest = require("./utils/run-test").runTest;
 
-describe("GH003: No Empty String Alt", () => {
+describe("GH003: No Empty Alt Text", () => {
   describe("successes", () => {
     test("html image", async () => {
       const strings = [
@@ -30,7 +30,7 @@ describe("GH003: No Empty String Alt", () => {
 
       expect(failedRules).toHaveLength(4);
       for (const rule of failedRules) {
-        expect(rule).toBe("no-empty-string-alt");
+        expect(rule).toBe("no-empty-alt-text");
       }
     });
 

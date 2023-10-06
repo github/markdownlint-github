@@ -1,8 +1,8 @@
 module.exports = {
-  names: ["GH003", "no-empty-string-alt"],
+  names: ["GH003", "no-empty-alt-text"],
   description: "Please provide an alternative text for the image.",
   information: new URL(
-    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH003-no-empty-string-alt.md",
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH003-no-empty-alt-text.md",
   ),
   tags: ["accessibility", "images"],
   function: function GH003(params, onError) {
