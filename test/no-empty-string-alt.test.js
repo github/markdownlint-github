@@ -18,6 +18,7 @@ describe("GH003: No Empty String Alt", () => {
       const strings = [
         '<img alt="" src="https://user-images.githubusercontent.com/abcdef.png">',
         "<img alt='' src='https://user-images.githubusercontent.com/abcdef.png'>",
+        '<img src="cat.png" alt="" /> <img src="dog.png" alt="" />',
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
@@ -27,7 +28,7 @@ describe("GH003: No Empty String Alt", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(2);
+      expect(failedRules).toHaveLength(4);
       for (const rule of failedRules) {
         expect(rule).toBe("no-empty-string-alt");
       }
@@ -36,6 +37,7 @@ describe("GH003: No Empty String Alt", () => {
     test("error message", async () => {
       const strings = [
         '<img alt="" src="https://user-images.githubusercontent.com/abcdef.png">',
+        '<img src="cat.png" alt="" /> <img src="dog.png" alt="" />',
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
@@ -44,6 +46,15 @@ describe("GH003: No Empty String Alt", () => {
         "Please provide an alternative text for the image.",
       );
       expect(results[0].errorRange).toEqual([6, 6]);
+
+      expect(results[1].ruleDescription).toMatch(
+        "Please provide an alternative text for the image.",
+      );
+      expect(results[1].errorRange).toEqual([20, 6]);
+      expect(results[2].ruleDescription).toMatch(
+        "Please provide an alternative text for the image.",
+      );
+      expect(results[2].errorRange).toEqual([49, 6]);
     });
   });
 });
