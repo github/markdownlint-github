@@ -30,8 +30,7 @@ module.exports = {
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+      for (const line of lines) {
         let matches;
         if (token.type === "inline") {
           matches = line.matchAll(markdownAltRegex);
