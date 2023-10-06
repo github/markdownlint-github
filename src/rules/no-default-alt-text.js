@@ -59,6 +59,7 @@ module.exports = {
           onError({
             lineNumber: lineNumber + i,
             range: [startIndex + 1, altText.length],
+            detail: `Flagged alt: ${altText}`,
           });
         }
       }
