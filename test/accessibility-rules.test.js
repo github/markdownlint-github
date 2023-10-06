@@ -26,7 +26,7 @@ describe("when A11y rules applied", () => {
       .map((failure) => failure.ruleNames)
       .flat();
 
-    expect(failuresForExampleFile).toHaveLength(1);
+    expect(failuresForExampleFile).toHaveLength(3);
     expect(failureNames).toContain("no-default-alt-text");
   });
 });
