@@ -11,10 +11,7 @@ describe("GH003: No Empty String Alt", () => {
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results).toHaveLength(0);
     });
     test("html image", async () => {
       const strings = [
@@ -23,10 +20,7 @@ describe("GH003: No Empty String Alt", () => {
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results).toHaveLength(0);
     });
   });
   describe("failures", () => {
