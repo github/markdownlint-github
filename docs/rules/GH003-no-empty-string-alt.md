@@ -16,19 +16,11 @@ This rule should be removed once this behavior is updated on GitHub's UI.
 
 ### Incorrect 👎
 
-```md
-![""](cat.png)
-```
-
 ```html
 <img src="cat.png" alt="">
 ```
 
 ### Correct 👍
-
-```md
-![Mona Lisa](mona.png)
-```
 
 ```html
 <img src="mona.png" alt="Mona Lisa, the Octocat">
