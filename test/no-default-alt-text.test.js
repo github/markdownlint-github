@@ -71,6 +71,17 @@ describe("GH001: No Default Alt Text", () => {
       }
     });
 
+    test("flags multiple consecutive inline images", async () => {
+      const strings = ['<img alt="image"><img alt="Image">'];
+      const results = await runTest(strings, altTextRule);
+      expect(results).toHaveLength(2);
+
+      expect(results[0].errorRange).toEqual([11, 5]);
+      expect(results[0].errorDetail).toEqual("Flagged alt: image");
+      expect(results[1].errorRange).toEqual([28, 5]);
+      expect(results[1].errorDetail).toEqual("Flagged alt: Image");
+    });
+
     test("error message", async () => {
       const strings = [
         "![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
