@@ -23,7 +23,12 @@ module.exports = {
   function: function GH001(params, onError) {
     const htmlTagsWithImages = params.parsers.markdownit.tokens.filter(
       (token) => {
-        return token.type === "html_block" && token.content.includes("<img");
+        return (
+          (token.type === "html_block" && token.content.includes("<img")) ||
+          (token.type === "inline" &&
+            token.content.includes("<img") &&
+            token.children.some((child) => child.type === "html_inline"))
+        );
       },
     );
     const inlineImages = params.parsers.markdownit.tokens.filter(
@@ -36,12 +41,15 @@ module.exports = {
       const lineRange = token.map;
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
-
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         let matches;
         if (token.type === "inline") {
-          matches = line.matchAll(markdownAltRegex);
+          if (token.children.some((child) => child.type === "html_inline")) {
+            matches = line.matchAll(htmlAltRegex);
+          } else {
+            matches = line.matchAll(markdownAltRegex);
+          }
         } else {
           matches = line.matchAll(htmlAltRegex);
         }
@@ -51,6 +59,7 @@ module.exports = {
           onError({
             lineNumber: lineNumber + i,
             range: [startIndex + 1, altText.length],
+            detail: `Flagged alt: ${altText}`,
           });
         }
       }

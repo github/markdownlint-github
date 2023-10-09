@@ -17,10 +17,7 @@ describe("GH002: No Generic Link Text", () => {
       ];
 
       const results = await runTest(strings, noGenericLinkTextRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results.length).toBe(0);
     });
   });
   describe("failures", () => {

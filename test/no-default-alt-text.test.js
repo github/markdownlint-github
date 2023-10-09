@@ -11,10 +11,7 @@ describe("GH001: No Default Alt Text", () => {
       ];
 
       const results = await runTest(strings, altTextRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results.length).toBe(0);
     });
     test("html image", async () => {
       const strings = [
@@ -22,10 +19,7 @@ describe("GH001: No Default Alt Text", () => {
       ];
 
       const results = await runTest(strings, altTextRule);
-
-      for (const result of results) {
-        expect(result).not.toBeDefined();
-      }
+      expect(results.length).toBe(0);
     });
   });
   describe("failures", () => {
@@ -75,6 +69,17 @@ describe("GH001: No Default Alt Text", () => {
       for (const rule of failedRules) {
         expect(rule).toBe("no-default-alt-text");
       }
+    });
+
+    test("flags multiple consecutive inline images", async () => {
+      const strings = ['<img alt="image"><img alt="Image">'];
+      const results = await runTest(strings, altTextRule);
+      expect(results).toHaveLength(2);
+
+      expect(results[0].errorRange).toEqual([11, 5]);
+      expect(results[0].errorDetail).toEqual("Flagged alt: image");
+      expect(results[1].errorRange).toEqual([28, 5]);
+      expect(results[1].errorDetail).toEqual("Flagged alt: Image");
     });
 
     test("error message", async () => {
