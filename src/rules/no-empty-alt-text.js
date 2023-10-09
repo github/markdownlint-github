@@ -24,8 +24,7 @@ module.exports = {
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
-      for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+      for (const [i, line] of lines.entries()) {
         const matches = line.matchAll(htmlAltRegex);
         for (const match of matches) {
           const matchingContent = match[0];
