@@ -6,7 +6,7 @@
 
 Currently, all images on github.com are automatically wrapped in an anchor tag.
 
-As a result, images that are intentionally marked as decorative (via `alt=""``) end up rendering as a link without an accessible name. This is confusing and inaccessible for assistive technology users. 
+As a result, images that are intentionally marked as decorative (via `alt=""`) end up rendering as a link without an accessible name. This is confusing and inaccessible for assistive technology users. 
 
 This rule can be enabled to enforce that the alt attribute is always set to descriptive text. 
 
