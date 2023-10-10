@@ -17,6 +17,7 @@ module.exports = {
       },
     );
 
+    const ImageRegex = new RegExp(/<img(.*?)>/, "gid");
     const htmlAltRegex = new RegExp(/alt=['"]/, "gid");
     const htmlEmptyAltRegex = new RegExp(/alt=['"]['"]/, "gid");
     for (const token of htmlTagsWithImages) {
@@ -25,23 +26,29 @@ module.exports = {
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
       for (const [i, line] of lines.entries()) {
-        const noAlt = [...line.matchAll(htmlAltRegex)].length === 0;
+        const imageTags = line.matchAll(ImageRegex);
 
-        const matches = line.matchAll(htmlEmptyAltRegex);
+        for (const imageTag of imageTags) {
+          const imageTagIndex = imageTag.indices[0][0];
 
-        for (const match of matches) {
-          const matchingContent = match[0];
-          const startIndex = match.indices[0][0];
-          onError({
-            lineNumber: lineNumber + i,
-            range: [startIndex + 1, matchingContent.length],
-          });
-        }
+          const emptyAltMatches = [
+            ...imageTag[0].matchAll(htmlEmptyAltRegex),
+          ][0];
+          const noAltMatches = [...imageTag[0].matchAll(htmlAltRegex)];
 
-        if (noAlt) {
-          onError({
-            lineNumber: lineNumber + i,
-          });
+          if (emptyAltMatches) {
+            const matchingContent = emptyAltMatches[0];
+            const startIndex = emptyAltMatches.indices[0][0];
+            onError({
+              lineNumber: lineNumber + i,
+              range: [imageTagIndex + startIndex + 1, matchingContent.length],
+            });
+          } else if (noAltMatches.length === 0) {
+            onError({
+              lineNumber: lineNumber + i,
+              range: [imageTagIndex + 1, imageTag[0].length],
+            });
+          }
         }
       }
     }
