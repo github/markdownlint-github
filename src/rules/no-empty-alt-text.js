@@ -17,21 +17,30 @@ module.exports = {
       },
     );
 
-    const htmlAltRegex = new RegExp(/alt=['"]['"]/, "gid");
-
+    const htmlAltRegex = new RegExp(/alt=['"]/, "gid");
+    const htmlEmptyAltRegex = new RegExp(/alt=['"]['"]/, "gid");
     for (const token of htmlTagsWithImages) {
       const lineRange = token.map;
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
       for (const [i, line] of lines.entries()) {
-        const matches = line.matchAll(htmlAltRegex);
+        const noAlt = [...line.matchAll(htmlAltRegex)].length === 0;
+
+        const matches = line.matchAll(htmlEmptyAltRegex);
+
         for (const match of matches) {
           const matchingContent = match[0];
           const startIndex = match.indices[0][0];
           onError({
             lineNumber: lineNumber + i,
             range: [startIndex + 1, matchingContent.length],
+          });
+        }
+
+        if (noAlt) {
+          onError({
+            lineNumber: lineNumber + i,
           });
         }
       }
