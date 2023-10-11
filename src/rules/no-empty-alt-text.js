@@ -1,4 +1,4 @@
-//  TODO: Clean up when https://github.com/DavidAnson/markdownlint/pull/993 is merged 
+//  TODO: Clean up when https://github.com/DavidAnson/markdownlint/pull/993 is merged
 module.exports = {
   names: ["GH003", "no-empty-alt-text"],
   description: "Please provide an alternative text for the image.",
