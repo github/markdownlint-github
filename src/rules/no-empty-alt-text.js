@@ -1,3 +1,4 @@
+//  TODO: Clean up when https://github.com/DavidAnson/markdownlint/pull/993 is merged
 module.exports = {
   names: ["GH003", "no-empty-alt-text"],
   description: "Please provide an alternative text for the image.",
@@ -17,22 +18,38 @@ module.exports = {
       },
     );
 
-    const htmlAltRegex = new RegExp(/alt=['"]['"]/, "gid");
-
+    const ImageRegex = new RegExp(/<img(.*?)>/, "gid");
+    const htmlAltRegex = new RegExp(/alt=['"]/, "gid");
+    const htmlEmptyAltRegex = new RegExp(/alt=['"]['"]/, "gid");
     for (const token of htmlTagsWithImages) {
       const lineRange = token.map;
       const lineNumber = token.lineNumber;
       const lines = params.lines.slice(lineRange[0], lineRange[1]);
 
       for (const [i, line] of lines.entries()) {
-        const matches = line.matchAll(htmlAltRegex);
-        for (const match of matches) {
-          const matchingContent = match[0];
-          const startIndex = match.indices[0][0];
-          onError({
-            lineNumber: lineNumber + i,
-            range: [startIndex + 1, matchingContent.length],
-          });
+        const imageTags = line.matchAll(ImageRegex);
+
+        for (const imageTag of imageTags) {
+          const imageTagIndex = imageTag.indices[0][0];
+
+          const emptyAltMatches = [
+            ...imageTag[0].matchAll(htmlEmptyAltRegex),
+          ][0];
+          const noAltMatches = [...imageTag[0].matchAll(htmlAltRegex)];
+
+          if (emptyAltMatches) {
+            const matchingContent = emptyAltMatches[0];
+            const startIndex = emptyAltMatches.indices[0][0];
+            onError({
+              lineNumber: lineNumber + i,
+              range: [imageTagIndex + startIndex + 1, matchingContent.length],
+            });
+          } else if (noAltMatches.length === 0) {
+            onError({
+              lineNumber: lineNumber + i,
+              range: [imageTagIndex + 1, imageTag[0].length],
+            });
+          }
         }
       }
     }

@@ -19,6 +19,9 @@ describe("GH003: No Empty Alt Text", () => {
         '<img alt="" src="https://user-images.githubusercontent.com/abcdef.png">',
         "<img alt='' src='https://user-images.githubusercontent.com/abcdef.png'>",
         '<img src="cat.png" alt="" /> <img src="dog.png" alt="" />',
+        '<img src="dog.png" />',
+        '<img alt src="dog.png" />',
+        "<img alt><img alt>",
       ];
 
       const results = await runTest(strings, noEmptyStringAltRule);
@@ -28,7 +31,7 @@ describe("GH003: No Empty Alt Text", () => {
         .flat()
         .filter((name) => !name.includes("GH"));
 
-      expect(failedRules).toHaveLength(4);
+      expect(failedRules).toHaveLength(8);
       for (const rule of failedRules) {
         expect(rule).toBe("no-empty-alt-text");
       }
