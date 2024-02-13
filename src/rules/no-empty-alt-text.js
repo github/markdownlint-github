@@ -19,7 +19,6 @@ module.exports = {
     );
 
     const ImageRegex = new RegExp(/<img(.*?)>/, "gid");
-    const htmlAltRegex = new RegExp(/alt=['"]/, "gid");
     const htmlEmptyAltRegex = new RegExp(/alt=['"]['"]/, "gid");
     for (const token of htmlTagsWithImages) {
       const lineRange = token.map;
@@ -35,19 +34,12 @@ module.exports = {
           const emptyAltMatches = [
             ...imageTag[0].matchAll(htmlEmptyAltRegex),
           ][0];
-          const noAltMatches = [...imageTag[0].matchAll(htmlAltRegex)];
-
           if (emptyAltMatches) {
             const matchingContent = emptyAltMatches[0];
             const startIndex = emptyAltMatches.indices[0][0];
             onError({
               lineNumber: lineNumber + i,
               range: [imageTagIndex + startIndex + 1, matchingContent.length],
-            });
-          } else if (noAltMatches.length === 0) {
-            onError({
-              lineNumber: lineNumber + i,
-              range: [imageTagIndex + 1, imageTag[0].length],
             });
           }
         }
