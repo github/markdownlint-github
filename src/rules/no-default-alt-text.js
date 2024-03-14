@@ -3,9 +3,10 @@
  * * "Screen Shot 2020-10-20 at 2 52 27 PM"
  * * "Screenshot 2020-10-20 at 2 52 27 PM"
  * * "Clean Shot 2020-10-20 @45x"
+ * * "Screencast from 23 02 2024 19 15 19]"
  */
 const defaultScreenshotRegex =
-  "(?:screen|clean) ?shot \\d{4}-\\d{2}-\\d{2}[^'\"\\]]*";
+  "(?:screen|clean) ?(?:shot|cast) \\d{4}-\\d{2}-\\d{2}[^'\"\\]]*";
 
 const imageRegex = "image";
 const combinedRegex = `(${[defaultScreenshotRegex, imageRegex].join("|")})`;
