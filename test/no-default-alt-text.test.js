@@ -26,6 +26,7 @@ describe("GH001: No Default Alt Text", () => {
     test("markdown example", async () => {
       const strings = [
         "![Screen Shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
+        "![Screencast from 23 02 2024 19 15 19](https://user-images.githubusercontent.com/abcdef.png)",
         "![ScreenShot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screen shot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
         "![Screenshot 2022-06-26 at 7 41 30 PM](https://user-images.githubusercontent.com/abcdef.png)",
@@ -50,6 +51,7 @@ describe("GH001: No Default Alt Text", () => {
     test("HTML example", async () => {
       const strings = [
         '<img alt="Screen Shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
+        '<img alt=" Screencast from 23 02 2024 19 15 19" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="ScreenShot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screen shot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
         '<img alt="Screenshot 2022-06-26 at 7 41 30 PM" src="https://user-images.githubusercontent.com/abcdef.png">',
