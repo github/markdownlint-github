@@ -15,11 +15,11 @@ describe("usage", () => {
     test("default options returned with no arguments provided", () => {
       const options = githubMarkdownLint.init();
       expect(options).toEqual({
-        "no-duplicate-header": true,
+        "no-duplicate-heading": true,
         "ol-prefix": "ordered",
         "no-space-in-links": false,
         "single-h1": true,
-        "no-emphasis-as-header": true,
+        "no-emphasis-as-heading": true,
         "no-empty-alt-text": false,
         "heading-increment": true,
         "no-generic-link-text": true,
