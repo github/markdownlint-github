@@ -7,17 +7,26 @@ import { FlatCompat } from "@eslint/eslintrc";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const compat = new FlatCompat({
     baseDirectory: __dirname,
     recommendedConfig: js.configs.recommended,
     allConfig: js.configs.all
 });
 
-export default [...compat.extends("plugin:github/recommended"), {
+export default [...compat.config({
+    extends: "plugin:github/recommended", 
+    ignorePatterns: ['eslint.config.mjs', '.markdownlint-cli2.cjs'],
+    rules: {
+        "import/no-commonjs": "off",
+        "filenames/match-regex": "off",
+        "i18n-text/no-en": "off",
+    },
+    }), {
     plugins: {
         github,
     },
-
+    ignores: ['eslint.config.mjs', '.markdownlint-cli2.cjs'],
     languageOptions: {
         globals: {
             ...globals.node,
@@ -33,6 +42,4 @@ export default [...compat.extends("plugin:github/recommended"), {
         "filenames/match-regex": "off",
         "i18n-text/no-en": "off",
     },
-
-    ignores: ['**/.markdownlint-cli2.cjs'],
 }];
