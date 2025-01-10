@@ -1,6 +1,6 @@
-const markdownlint = require("markdownlint");
+import { lint } from "markdownlint/async";
 
-async function runTest(strings, rule, ruleConfig) {
+export async function runTest(strings, rule, ruleConfig) {
   const thisRuleName = rule.names[1];
 
   const config = {
@@ -19,15 +19,13 @@ async function runTest(strings, rule, ruleConfig) {
       };
 
       return new Promise((resolve, reject) => {
-        markdownlint(thisTestConfig, (err, result) => {
+        lint(thisTestConfig, (err, result) => {
           if (err) reject(err);
           resolve(result[0]);
         });
       });
-    }),
+    })
   );
 
   return results.flat();
 }
-
-exports.runTest = runTest;

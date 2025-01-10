@@ -1,5 +1,5 @@
-const noGenericLinkTextRule = require("../src/rules/no-generic-link-text");
-const runTest = require("./utils/run-test").runTest;
+import { noGenericLinkTextRule } from "../src/rules/no-generic-link-text";
+import { runTest } from "./utils/run-test";
 
 describe("GH002: No Generic Link Text", () => {
   describe("successes", () => {
@@ -52,7 +52,7 @@ describe("GH002: No Generic Link Text", () => {
       const results = await runTest(strings, noGenericLinkTextRule);
 
       expect(results[0].ruleDescription).toMatch(
-        /Avoid using generic link text like `Learn more` or `Click here`/,
+        /Avoid using generic link text like `Learn more` or `Click here`/
       );
       expect(results[0].errorDetail).toBe("For link: Click here");
     });
@@ -62,7 +62,7 @@ describe("GH002: No Generic Link Text", () => {
         ["[something](www.github.com)"],
         noGenericLinkTextRule,
         // eslint-disable-next-line camelcase
-        { additional_banned_texts: ["something"] },
+        { additional_banned_texts: ["something"] }
       );
 
       const failedRules = results
@@ -77,7 +77,7 @@ describe("GH002: No Generic Link Text", () => {
       const results = await runTest(
         ["[Link](primer.style/components/Link)"],
         noGenericLinkTextRule,
-        { exceptions: ["link"] },
+        { exceptions: ["link"] }
       );
 
       for (const result of results) {

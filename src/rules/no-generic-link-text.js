@@ -1,4 +1,4 @@
-const { stripAndDowncaseText } = require("../helpers/strip-and-downcase-text");
+import { stripAndDowncaseText } from "../helpers/strip-and-downcase-text";
 
 const bannedLinkText = [
   "read more",
@@ -9,23 +9,23 @@ const bannedLinkText = [
   "link",
 ];
 
-module.exports = {
+export const noGenericLinkTextRule = {
   names: ["GH002", "no-generic-link-text"],
   description:
     "Avoid using generic link text like `Learn more` or `Click here`",
   information: new URL(
-    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH002-no-generic-link-text.md",
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH002-no-generic-link-text.md"
   ),
   tags: ["accessibility", "links"],
   function: function GH002(params, onError) {
     // markdown syntax
     let bannedLinkTexts = bannedLinkText.concat(
-      params.config.additional_banned_texts || [],
+      params.config.additional_banned_texts || []
     );
     const exceptions = params.config.exceptions || [];
     if (exceptions.length > 0) {
       bannedLinkTexts = bannedLinkTexts.filter(
-        (text) => !exceptions.includes(text),
+        (text) => !exceptions.includes(text)
       );
     }
     const inlineTokens = params.tokens.filter((t) => t.type === "inline");

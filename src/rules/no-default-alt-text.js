@@ -14,11 +14,11 @@ const combinedRegex = `(${[defaultScreenshotRegex, imageRegex].join("|")})`;
 const markdownAltRegex = new RegExp(`!\\[${combinedRegex}\\]\\(.*\\)`, "gid");
 const htmlAltRegex = new RegExp(`alt=["']${combinedRegex}["']`, "gid");
 
-module.exports = {
+export const altTextRule = {
   names: ["GH001", "no-default-alt-text"],
   description: "Images should have meaningful alternative text (alt text)",
   information: new URL(
-    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md",
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH001-no-default-alt-text.md"
   ),
   tags: ["accessibility", "images"],
   function: function GH001(params, onError) {
@@ -30,12 +30,12 @@ module.exports = {
             token.content.includes("<img") &&
             token.children.some((child) => child.type === "html_inline"))
         );
-      },
+      }
     );
     const inlineImages = params.parsers.markdownit.tokens.filter(
       (token) =>
         token.type === "inline" &&
-        token.children.some((child) => child.type === "image"),
+        token.children.some((child) => child.type === "image")
     );
 
     for (const token of [...htmlTagsWithImages, ...inlineImages]) {

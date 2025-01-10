@@ -1,26 +1,30 @@
 {
   "name": "@github/markdownlint-github",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An opinionated collection of markdownlint rules used by GitHub.",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "directories": {
     "test": "test"
   },
   "scripts": {
     "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
-    "test": "npm run lint && jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\" \"!docs/rules\" \"!test/example.md\" && eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
     "eslint-plugin-github": "^5.0.1",
     "jest": "^29.5.0",
     "markdownlint": "^0.37.3",
-    "markdownlint-cli2": "^0.16.0"
+    "markdownlint-cli2": "^0.17.0"
   },
   "repository": {
     "type": "git",

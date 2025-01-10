@@ -1,8 +1,8 @@
-module.exports = {
+export const noEmptyStringAltRule = {
   names: ["GH003", "no-empty-alt-text"],
   description: "Please provide an alternative text for the image.",
   information: new URL(
-    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH003-no-empty-alt-text.md",
+    "https://github.com/github/markdownlint-github/blob/main/docs/rules/GH003-no-empty-alt-text.md"
   ),
   tags: ["accessibility", "images"],
   function: function GH003(params, onError) {
@@ -14,7 +14,7 @@ module.exports = {
             token.content.includes("<img") &&
             token.children.some((child) => child.type === "html_inline"))
         );
-      },
+      }
     );
 
     const ImageRegex = new RegExp(/<img(.*?)>/, "gid");

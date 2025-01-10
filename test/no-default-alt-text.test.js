@@ -1,5 +1,5 @@
-const altTextRule = require("../src/rules/no-default-alt-text");
-const runTest = require("./utils/run-test").runTest;
+import {altTextRule} from "../src/rules/no-default-alt-text";
+import { runTest } from "./utils/run-test";
 
 describe("GH001: No Default Alt Text", () => {
   describe("successes", () => {
@@ -93,11 +93,11 @@ describe("GH001: No Default Alt Text", () => {
       const results = await runTest(strings, altTextRule);
 
       expect(results[0].ruleDescription).toMatch(
-        "Images should have meaningful alternative text (alt text)",
+        "Images should have meaningful alternative text (alt text)"
       );
       expect(results[0].errorRange).toEqual([3, 36]);
       expect(results[1].ruleDescription).toMatch(
-        "Images should have meaningful alternative text (alt text)",
+        "Images should have meaningful alternative text (alt text)"
       );
       expect(results[1].errorRange).toEqual([11, 36]);
     });

@@ -1,6 +1,6 @@
-const markdownlint = require("markdownlint");
-const accessibilityRulesConfig = require("../style/accessibility.json");
-const accessibilityRules = require("..");
+import { lint } from "markdownlint/async";
+import * as accessibilityRulesConfig from "../style/accessibility.json";
+import * as accessibilityRules from "..";
 
 const exampleFileName = "./test/example.md";
 const options = {
@@ -15,7 +15,7 @@ const options = {
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {
     const result = await new Promise((resolve, reject) => {
-      markdownlint(options, (err, res) => {
+      lint(options, (err, res) => {
         if (err) reject(err);
         resolve(res);
       });
