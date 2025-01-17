@@ -47,33 +47,36 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 4. Edit `.markdownlint-cli2.mjs` file to suit your needs. Start with
 
     ```js
-    const options = require('@github/markdownlint-github').init()
-    module.exports = {
-        config: options,
+    import configOptions, {init} from "@github/markdownlint-github"
+    const options = {
+        config: init(),
         customRules: ["@github/markdownlint-github"],
         outputFormatters: [
           [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ] // ensures the error message includes a link to the rule documentation
         ]
     }
+    export default options
     ```
 
     Or, you can also pass in configuration options that you wish to override the default. Read more at [Customizing configurations](#customizing-configurations).
     This looks like:
 
     ```js
-    const options = require('@github/markdownlint-github').init({
+    import configOptions, {init} from "@github/markdownlint-github"
+    const overriddenOptions = init({
         'fenced-code-language': false, // Custom overrides
     })
-    module.exports = {
-        config: options,
+    const options = {
+        config: overriddenOptions,
         customRules: ["@github/markdownlint-github"],
         outputFormatters: [
           [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ]
         ]
     }
+    export default options
     ```
 
-5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.cjs` configuration. When you make edits to your configuration, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs. If your project runs on Codespaces, consider adding this extension to your `.devcontainer/devcontainer.json` so that this extension is installed to new Codespaces by default.
+5. Install the [`vscode-markdownlint`](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) plugin to ensure `markdownlint` violations are surfaced in the file. This plugin should flag rules based off your `.markdownlint-cli2.mjs` configuration. When you make edits to your configuration, you will need to reload the VSCode window (`Ctrl+Shift+P` -> `Reload Window`) to ensure the extension syncs. If your project runs on Codespaces, consider adding this extension to your `.devcontainer/devcontainer.json` so that this extension is installed to new Codespaces by default.
 
 ### Customizing configurations
 
@@ -89,13 +92,15 @@ To review configurations supported by `markdownlint`, see [`markdownlint-cli2` c
 
 You may write custom rules within your repository. Follow the [custom rules guide in `markdownlint`](https://github.com/DavidAnson/markdownlint/blob/main/doc/CustomRules.md) to write your rule.
 
-The rule will need to be enabled in the configuration. For instance, if you introduce `some-rule.js` with the name "some-rule", you must set the path of the custom rule in the `.markdownlint-cli2.cjs` file:
+The rule will need to be enabled in the configuration. For instance, if you introduce `some-rule.js` with the name "some-rule", you must set the path of the custom rule in the `.markdownlint-cli2.mjs` file:
 
 ```js
-module.exports = require('@github/markdownlint-github').init({
+import configOptions, {init} from "@github/markdownlint-github"
+const options = init({
     "some-rule": true,
     customRules: ["@github/markdownlint-github", "some-rule.js"],
 })
+export default options
 ```
 
 See [`markdownlint-cli2` configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration).
@@ -104,7 +109,8 @@ Consider upstreaming any rules you find useful as proposals to this repository.
 
 ## License
 
-This project is licensed under the terms of the MIT open source license. Please refer to [MIT](./LICENSE.txt) for the full terms.
+This project is licensed under the terms of the MIT open source license. Please
+refer to [the MIT license](./LICENSE.txt) for the full terms.
 
 ## Maintainers
 
