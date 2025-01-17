@@ -5,7 +5,6 @@ describe("usage", () => {
   describe("default export", () => {
     test("custom rules on default export", () => {
       const rules = githubMarkdownLint;
-      console.log(rules);
       expect(rules).toHaveLength(3);
 
       expect(rules[0].names).toEqual(["GH001", "no-default-alt-text"]);
@@ -14,8 +13,8 @@ describe("usage", () => {
     });
   });
   describe("init method", () => {
-    test("default options returned with no arguments provided", () => {
-      const options = init();
+    test("default options returned with no arguments provided", async () => {
+      const options = await init();
       expect(options).toEqual({
         "no-duplicate-heading": true,
         "ol-prefix": "ordered",
@@ -38,8 +37,8 @@ describe("usage", () => {
       });
     });
 
-    test("arguments override default configuration", () => {
-      const defaultOptions = init();
+    test("arguments override default configuration", async () => {
+      const defaultOptions = await init();
 
       const toTestOptions = Object.keys(defaultOptions).slice(0, 3);
 
@@ -54,20 +53,20 @@ describe("usage", () => {
       expect(originalConfig).not.toEqual(consumerConfig);
 
       // do config step
-      const options = init(consumerConfig);
+      const options = await init(consumerConfig);
 
       // confirm config is set by consumer
       expect(options).toHaveProperty(
         toTestOptions[0],
-        consumerConfig[toTestOptions[0]]
+        consumerConfig[toTestOptions[0]],
       );
       expect(options).toHaveProperty(
         toTestOptions[1],
-        consumerConfig[toTestOptions[1]]
+        consumerConfig[toTestOptions[1]],
       );
       expect(options).toHaveProperty(
         toTestOptions[2],
-        consumerConfig[toTestOptions[2]]
+        consumerConfig[toTestOptions[2]],
       );
     });
   });

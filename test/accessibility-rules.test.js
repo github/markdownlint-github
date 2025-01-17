@@ -1,5 +1,4 @@
 import { lint } from "markdownlint/async";
-// import * as accessibilityRulesConfig from "../style/accessibility.json";
 import { githubMarkdownLint } from "../src/rules";
 
 const exampleFileName = "./test/example.md";
@@ -27,8 +26,6 @@ const options = {
   files: [exampleFileName],
   customRules: githubMarkdownLint,
 };
-
-console.log(options);
 
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {

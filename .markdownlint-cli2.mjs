@@ -8,7 +8,6 @@ const configOptions = await init({
   "no-emphasis-as-heading": true,
   "first-line-heading": true,
 });
-console.log(configOptions);
 const options = {
   config: configOptions,
   customRules: ["./index.js"],

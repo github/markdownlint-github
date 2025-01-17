@@ -1,4 +1,4 @@
-import { stripAndDowncaseText } from "../helpers/strip-and-downcase-text";
+import { stripAndDowncaseText } from "../helpers/strip-and-downcase-text.js";
 
 const bannedLinkText = [
   "read more",
