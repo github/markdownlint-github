@@ -12,7 +12,7 @@
   },
   "scripts": {
     "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
-    "test": "npm run lint &&NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "npm run lint && NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\" \"!docs/rules\" \"!test/example.md\" && eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
