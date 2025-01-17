@@ -11,8 +11,14 @@
   "plugins": ["github"],
   "extends": ["plugin:github/recommended"],
   "rules": {
-    "import/no-commonjs": "off",
     "filenames/match-regex": "off",
-    "i18n-text/no-en": "off"
+    "i18n-text/no-en": "off",
+    "import/extensions": ["error", { "js": "ignorePackages"}],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^markdownlint/.+"]
+      }
+    ]
   }
 }

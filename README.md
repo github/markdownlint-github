@@ -22,10 +22,10 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 
 **Important**: We support the use of `markdownlint` through [`markdownlint-cli2`](https://github.com/DavidAnson/markdownlint-cli2) instead of `markdownlint-cli` for compatibility with the [`vscode-markdownlint`](https://github.com/DavidAnson/vscode-markdownlint) plugin.
 
-1. Create a `.markdownlint-cli2.cjs` file in the root of your repository.
+1. Create a `.markdownlint-cli2.mjs` file in the root of your repository.
 
     ```bash
-    touch .markdownlint-cli2.cjs
+    touch .markdownlint-cli2.mjs
     ```
 
 2. Install packages.
@@ -44,7 +44,7 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
     }
     ```
 
-4. Edit `.markdownlint-cli2.cjs` file to suit your needs. Start with
+4. Edit `.markdownlint-cli2.mjs` file to suit your needs. Start with
 
     ```js
     const options = require('@github/markdownlint-github').init()
@@ -57,7 +57,7 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
     }
     ```
 
-    Or, you can also pass in configuration options that you wish to override the default. Read more at [Customizing configurations](#customizing-configurations). 
+    Or, you can also pass in configuration options that you wish to override the default. Read more at [Customizing configurations](#customizing-configurations).
     This looks like:
 
     ```js
