@@ -41,7 +41,6 @@ describe("when A11y rules applied", () => {
       .map((failure) => failure.ruleNames)
       .flat();
 
-    // Currently failing, finding 6 failures not 3
     expect(failuresForExampleFile).toHaveLength(3);
     expect(failureNames).toContain("no-default-alt-text");
   });
