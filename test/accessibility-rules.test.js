@@ -1,12 +1,28 @@
 import { lint } from "markdownlint/async";
-import * as accessibilityRulesConfig from "../style/accessibility.json";
-import { githubMarkdownLint } from "../src/rules/index.js";
+// import * as accessibilityRulesConfig from "../style/accessibility.json";
+import { githubMarkdownLint } from "../src/rules";
 
 const exampleFileName = "./test/example.md";
 const options = {
   config: {
+    "no-duplicate-heading": true,
+    "ol-prefix": "ordered",
+    "no-space-in-links": false,
+    "single-h1": true,
+    "no-emphasis-as-heading": true,
+    "no-empty-alt-text": false,
+    "heading-increment": true,
+    "no-generic-link-text": true,
+    "ul-style": {
+      style: "asterisk",
+    },
     default: false,
-    ...accessibilityRulesConfig,
+    "no-inline-html": false,
+    "no-bare-urls": false,
+    "no-blanks-blockquote": false,
+    "fenced-code-language": true,
+    "no-default-alt-text": true,
+    "no-alt-text": true,
   },
   files: [exampleFileName],
   customRules: githubMarkdownLint,

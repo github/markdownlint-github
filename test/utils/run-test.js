@@ -24,7 +24,7 @@ export async function runTest(strings, rule, ruleConfig) {
           resolve(result[0]);
         });
       });
-    })
+    }),
   );
 
   return results.flat();

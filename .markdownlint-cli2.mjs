@@ -1,6 +1,6 @@
 import { init } from "./index.js";
 
-const options = init({
+const configOptions = await init({
   default: false,
   "heading-increment": true,
   "no-alt-text": true,
@@ -8,5 +8,9 @@ const options = init({
   "no-emphasis-as-heading": true,
   "first-line-heading": true,
 });
-export const config = options;
-export const customRules = ["./index.js"];
+console.log(configOptions);
+const options = {
+  config: configOptions,
+  customRules: ["./index.js"],
+};
+export default options;

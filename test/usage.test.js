@@ -5,6 +5,7 @@ describe("usage", () => {
   describe("default export", () => {
     test("custom rules on default export", () => {
       const rules = githubMarkdownLint;
+      console.log(rules);
       expect(rules).toHaveLength(3);
 
       expect(rules[0].names).toEqual(["GH001", "no-default-alt-text"]);
