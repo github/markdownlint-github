@@ -1,34 +1,23 @@
+import { readFile } from "fs/promises";
 import { lint } from "markdownlint/async";
-import { githubMarkdownLint } from "../src/rules";
+import githubMarkdownLint from "../index.js";
 
 const exampleFileName = "./test/example.md";
-const options = {
-  config: {
-    "no-duplicate-heading": true,
-    "ol-prefix": "ordered",
-    "no-space-in-links": false,
-    "single-h1": true,
-    "no-emphasis-as-heading": true,
-    "no-empty-alt-text": false,
-    "heading-increment": true,
-    "no-generic-link-text": true,
-    "ul-style": {
-      style: "asterisk",
-    },
-    default: false,
-    "no-inline-html": false,
-    "no-bare-urls": false,
-    "no-blanks-blockquote": false,
-    "fenced-code-language": true,
-    "no-default-alt-text": true,
-    "no-alt-text": true,
-  },
-  files: [exampleFileName],
-  customRules: githubMarkdownLint,
-};
 
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {
+    const accessibilityRules = JSON.parse(
+      await readFile(new URL("../style/accessibility.json", import.meta.url)),
+    );
+    const options = {
+      config: {
+        default: false,
+        ...accessibilityRules,
+      },
+      files: [exampleFileName],
+      customRules: githubMarkdownLint,
+    };
+
     const result = await new Promise((resolve, reject) => {
       lint(options, (err, res) => {
         if (err) reject(err);
