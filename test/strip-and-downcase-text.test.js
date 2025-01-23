@@ -1,6 +1,4 @@
-const {
-  stripAndDowncaseText,
-} = require("../src/helpers/strip-and-downcase-text");
+import { stripAndDowncaseText } from "../src/helpers/strip-and-downcase-text";
 
 describe("stripAndDowncaseText", () => {
   test("strips extra whitespace", () => {

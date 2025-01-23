@@ -1,4 +1,5 @@
-const githubMarkdownLint = require("../index");
+import { init } from "../index.js";
+import { githubMarkdownLint } from "../src/rules/index.js";
 
 describe("usage", () => {
   describe("default export", () => {
@@ -12,8 +13,8 @@ describe("usage", () => {
     });
   });
   describe("init method", () => {
-    test("default options returned with no arguments provided", () => {
-      const options = githubMarkdownLint.init();
+    test("default options returned with no arguments provided", async () => {
+      const options = await init();
       expect(options).toEqual({
         "no-duplicate-heading": true,
         "ol-prefix": "ordered",
@@ -36,8 +37,8 @@ describe("usage", () => {
       });
     });
 
-    test("arguments override default configuration", () => {
-      const defaultOptions = githubMarkdownLint.init();
+    test("arguments override default configuration", async () => {
+      const defaultOptions = await init();
 
       const toTestOptions = Object.keys(defaultOptions).slice(0, 3);
 
@@ -52,7 +53,7 @@ describe("usage", () => {
       expect(originalConfig).not.toEqual(consumerConfig);
 
       // do config step
-      const options = githubMarkdownLint.init(consumerConfig);
+      const options = await init(consumerConfig);
 
       // confirm config is set by consumer
       expect(options).toHaveProperty(

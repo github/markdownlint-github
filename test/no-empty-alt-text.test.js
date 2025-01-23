@@ -1,5 +1,5 @@
-const noEmptyStringAltRule = require("../src/rules/no-empty-alt-text");
-const runTest = require("./utils/run-test").runTest;
+import { noEmptyStringAltRule } from "../src/rules/no-empty-alt-text";
+import { runTest } from "./utils/run-test";
 
 describe("GH003: No Empty Alt Text", () => {
   describe("successes", () => {

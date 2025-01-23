@@ -1,4 +1,4 @@
-const { stripAndDowncaseText } = require("../helpers/strip-and-downcase-text");
+import { stripAndDowncaseText } from "../helpers/strip-and-downcase-text.js";
 
 const bannedLinkText = [
   "read more",
@@ -9,7 +9,7 @@ const bannedLinkText = [
   "link",
 ];
 
-module.exports = {
+export const noGenericLinkTextRule = {
   names: ["GH002", "no-generic-link-text"],
   description:
     "Avoid using generic link text like `Learn more` or `Click here`",

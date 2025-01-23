@@ -14,7 +14,7 @@ const combinedRegex = `(${[defaultScreenshotRegex, imageRegex].join("|")})`;
 const markdownAltRegex = new RegExp(`!\\[${combinedRegex}\\]\\(.*\\)`, "gid");
 const htmlAltRegex = new RegExp(`alt=["']${combinedRegex}["']`, "gid");
 
-module.exports = {
+export const altTextRule = {
   names: ["GH001", "no-default-alt-text"],
   description: "Images should have meaningful alternative text (alt text)",
   information: new URL(

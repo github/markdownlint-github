@@ -1,19 +1,25 @@
-const _ = require("lodash");
-
-const accessibilityRules = require("./style/accessibility.json");
-const base = require("./style/base.json");
-const gitHubCustomRules = require("./src/rules/index").rules;
-
-module.exports = [...gitHubCustomRules];
+import { readFile } from "fs/promises";
+import _ from "lodash-es";
+import { githubMarkdownLint } from "./src/rules/index.js";
 
 const offByDefault = ["no-empty-alt-text"];
 
-for (const rule of gitHubCustomRules) {
-  const ruleName = rule.names[1];
-  base[ruleName] = offByDefault.includes(ruleName) ? false : true;
+export async function init(consumerConfig) {
+  // left overwrites right
+  const accessibilityRules = JSON.parse(
+    await readFile(new URL("./style/accessibility.json", import.meta.url)),
+  );
+
+  const base = JSON.parse(
+    await readFile(new URL("./style/base.json", import.meta.url)),
+  );
+
+  for (const rule of githubMarkdownLint) {
+    const ruleName = rule.names[1];
+    base[ruleName] = offByDefault.includes(ruleName) ? false : true;
+  }
+
+  return _.defaultsDeep(consumerConfig, accessibilityRules, base);
 }
 
-module.exports.init = function init(consumerConfig) {
-  // left overwrites right
-  return _.defaultsDeep(consumerConfig, accessibilityRules, base);
-};
+export default githubMarkdownLint;

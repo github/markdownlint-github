@@ -1,21 +1,25 @@
-const markdownlint = require("markdownlint");
-const accessibilityRulesConfig = require("../style/accessibility.json");
-const accessibilityRules = require("..");
+import { readFile } from "fs/promises";
+import { lint } from "markdownlint/async";
+import githubMarkdownLint from "../index.js";
 
 const exampleFileName = "./test/example.md";
-const options = {
-  config: {
-    default: false,
-    ...accessibilityRulesConfig,
-  },
-  files: [exampleFileName],
-  customRules: accessibilityRules,
-};
 
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {
+    const accessibilityRules = JSON.parse(
+      await readFile(new URL("../style/accessibility.json", import.meta.url)),
+    );
+    const options = {
+      config: {
+        default: false,
+        ...accessibilityRules,
+      },
+      files: [exampleFileName],
+      customRules: githubMarkdownLint,
+    };
+
     const result = await new Promise((resolve, reject) => {
-      markdownlint(options, (err, res) => {
+      lint(options, (err, res) => {
         if (err) reject(err);
         resolve(res);
       });

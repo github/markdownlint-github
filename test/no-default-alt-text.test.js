@@ -1,5 +1,5 @@
-const altTextRule = require("../src/rules/no-default-alt-text");
-const runTest = require("./utils/run-test").runTest;
+import { altTextRule } from "../src/rules/no-default-alt-text";
+import { runTest } from "./utils/run-test";
 
 describe("GH001: No Default Alt Text", () => {
   describe("successes", () => {

@@ -1,5 +1,5 @@
-const noGenericLinkTextRule = require("../src/rules/no-generic-link-text");
-const runTest = require("./utils/run-test").runTest;
+import { noGenericLinkTextRule } from "../src/rules/no-generic-link-text";
+import { runTest } from "./utils/run-test";
 
 describe("GH002: No Generic Link Text", () => {
   describe("successes", () => {
