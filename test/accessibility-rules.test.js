@@ -1,14 +1,11 @@
-import { readFile } from "fs/promises";
 import { lint } from "markdownlint/async";
 import githubMarkdownLint from "../index.js";
+import accessibilityRules from "../style/accessibility.js";
 
 const exampleFileName = "./test/example.md";
 
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {
-    const accessibilityRules = JSON.parse(
-      await readFile(new URL("../style/accessibility.json", import.meta.url)),
-    );
     const options = {
       config: {
         default: false,

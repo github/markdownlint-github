@@ -1,18 +1,13 @@
-import { readFile } from "fs/promises";
 import _ from "lodash-es";
 import { githubMarkdownLint } from "./src/rules/index.js";
 
+import accessibilityRules from "./style/accessibility.js";
+import baseRules from "./style/base.js";
+
 const offByDefault = ["no-empty-alt-text"];
 
-export async function init(consumerConfig) {
-  // left overwrites right
-  const accessibilityRules = JSON.parse(
-    await readFile(new URL("./style/accessibility.json", import.meta.url)),
-  );
-
-  const base = JSON.parse(
-    await readFile(new URL("./style/base.json", import.meta.url)),
-  );
+export function init(consumerConfig) {
+  const base = { ...baseRules };
 
   for (const rule of githubMarkdownLint) {
     const ruleName = rule.names[1];
