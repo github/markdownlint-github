@@ -47,10 +47,13 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
 4. Edit `.markdownlint-cli2.mjs` file to suit your needs. Start with
 
     ```js
+    import markdownIt from "markdown-it"
     import configOptions, {init} from "@github/markdownlint-github"
+    const markdownItFactory = () => markdownIt({ html: true })
     const options = {
         config: init(),
         customRules: ["@github/markdownlint-github"],
+        markdownItFactory,
         outputFormatters: [
           [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ] // ensures the error message includes a link to the rule documentation
         ]
@@ -62,13 +65,16 @@ See [`markdownlint` rules](https://github.com/DavidAnson/markdownlint#rules--ali
     This looks like:
 
     ```js
+    import markdownIt from "markdown-it"
     import configOptions, {init} from "@github/markdownlint-github"
     const overriddenOptions = init({
         'fenced-code-language': false, // Custom overrides
     })
+    const markdownItFactory = () => markdownIt({ html: true })
     const options = {
         config: overriddenOptions,
         customRules: ["@github/markdownlint-github"],
+        markdownItFactory,
         outputFormatters: [
           [ "markdownlint-cli2-formatter-pretty", { "appendLink": true } ]
         ]
@@ -96,9 +102,12 @@ The rule will need to be enabled in the configuration. For instance, if you intr
 
 ```js
 import configOptions, {init} from "@github/markdownlint-github"
+import markdownIt from "markdown-it"
+const markdownItFactory = () => markdownIt({ html: true })
 const options = init({
     "some-rule": true,
     customRules: ["@github/markdownlint-github", "some-rule.js"],
+    markdownItFactory
 })
 export default options
 ```
