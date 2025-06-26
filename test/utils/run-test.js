@@ -1,4 +1,7 @@
 import { lint } from "markdownlint/async";
+import markdownIt from "markdown-it";
+
+const markdownItFactory = () => markdownIt({ html: true });
 
 export async function runTest(strings, rule, ruleConfig) {
   const thisRuleName = rule.names[1];
@@ -9,6 +12,7 @@ export async function runTest(strings, rule, ruleConfig) {
       [thisRuleName]: ruleConfig || true,
     },
     customRules: [rule],
+    markdownItFactory,
   };
 
   const results = await Promise.all(

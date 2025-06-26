@@ -1,8 +1,10 @@
 import { lint } from "markdownlint/async";
+import markdownIt from "markdown-it";
 import githubMarkdownLint from "../index.js";
 import accessibilityRules from "../style/accessibility.js";
 
 const exampleFileName = "./test/example.md";
+const markdownItFactory = () => markdownIt({ html: true });
 
 describe("when A11y rules applied", () => {
   test("fails expected rules", async () => {
@@ -13,6 +15,7 @@ describe("when A11y rules applied", () => {
       },
       files: [exampleFileName],
       customRules: githubMarkdownLint,
+      markdownItFactory,
     };
 
     const result = await new Promise((resolve, reject) => {

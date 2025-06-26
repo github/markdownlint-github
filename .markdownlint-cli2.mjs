@@ -1,4 +1,7 @@
+import markdownIt from "markdown-it";
 import { init } from "./index.js";
+
+const markdownItFactory = () => markdownIt({ html: true });
 
 const configOptions = await init({
   default: false,
@@ -11,5 +14,6 @@ const configOptions = await init({
 const options = {
   config: configOptions,
   customRules: ["./index.js"],
+  markdownItFactory,
 };
 export default options;
