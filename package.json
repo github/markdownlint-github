@@ -25,8 +25,8 @@
     "globals": "^16.0.0",
     "eslint-plugin-github": "^6.0.0",
     "jest": "^30.0.3",
-    "markdownlint": "^0.39.0",
-    "markdownlint-cli2": "^0.19.1"
+    "markdownlint": "^0.40.0",
+    "markdownlint-cli2": "^0.20.0"
   },
   "repository": {
     "type": "git",
