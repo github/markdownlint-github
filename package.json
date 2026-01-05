@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "eslint": "^9.16.0",
-    "globals": "^16.0.0",
+    "globals": "^17.0.0",
     "eslint-plugin-github": "^6.0.0",
     "jest": "^30.0.3",
     "markdownlint": "^0.40.0",
