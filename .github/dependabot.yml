@@ -4,6 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    # TODO: Allow `eslint` to update to version 10 after `eslint-plugin-github` updates with support for v10 too
+    ignore:
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
     groups:
       all-dependencies:
         patterns:
