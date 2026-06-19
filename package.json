@@ -42,6 +42,6 @@
   },
   "homepage": "https://github.com/github/markdownlint-github#readme",
   "overrides": {
-    "@babel/core": "7.29.6"
+    "@babel/core": "^7.29.6"
   }
 }
