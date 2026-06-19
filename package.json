@@ -5,7 +5,7 @@
   "type": "module",
   "exports": "./index.js",
   "engines": {
-    "node": ">=18"
+    "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
   },
   "directories": {
     "test": "test"
@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "eslint": "^9.16.0",
-    "globals": "^17.0.0",
     "eslint-plugin-github": "^6.0.0",
-    "jest": "^30.0.3",
+    "globals": "^17.0.0",
+    "jest": "^30.4.2",
     "markdownlint": "^0.41.0",
     "markdownlint-cli2": "^0.22.0"
   },
@@ -40,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/github/markdownlint-github/issues"
   },
-  "homepage": "https://github.com/github/markdownlint-github#readme"
+  "homepage": "https://github.com/github/markdownlint-github#readme",
+  "overrides": {
+    "@babel/core": "^7.29.6"
+  }
 }
