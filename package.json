@@ -5,7 +5,7 @@
   "type": "module",
   "exports": "./index.js",
   "engines": {
-    "node": ">=18"
+    "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
   },
   "directories": {
     "test": "test"
