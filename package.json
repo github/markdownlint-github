@@ -12,7 +12,7 @@
   },
   "scripts": {
     "publish": "npm publish --access public --@github:registry=https://registry.npmjs.org",
-    "test": "npm run lint && NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "npm run lint && vitest run",
     "lint": "markdownlint-cli2 \"**/*.{md,mdx}\" \"!node_modules\" \"!docs/rules\" \"!test/example.md\" && eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -24,9 +24,10 @@
     "eslint": "^9.16.0",
     "eslint-plugin-github": "^6.0.0",
     "globals": "^17.0.0",
-    "jest": "^30.4.2",
+    "js-yaml": "^5.1.0",
     "markdownlint": "^0.41.0",
-    "markdownlint-cli2": "^0.22.0"
+    "markdownlint-cli2": "^0.22.0",
+    "vitest": "^4.1.9"
   },
   "repository": {
     "type": "git",
@@ -40,8 +41,5 @@
   "bugs": {
     "url": "https://github.com/github/markdownlint-github/issues"
   },
-  "homepage": "https://github.com/github/markdownlint-github#readme",
-  "overrides": {
-    "@babel/core": "^7.29.6"
-  }
+  "homepage": "https://github.com/github/markdownlint-github#readme"
 }
