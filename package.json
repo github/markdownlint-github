@@ -25,6 +25,7 @@
     "eslint-plugin-github": "^6.0.0",
     "globals": "^17.0.0",
     "jest": "^30.4.2",
+    "js-yaml": "^5.1.0",
     "markdownlint": "^0.41.0",
     "markdownlint-cli2": "^0.22.0"
   },
