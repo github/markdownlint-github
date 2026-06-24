@@ -9,7 +9,7 @@ export default [
       globals: {
         ...globals.es6,
         ...globals.node,
-        ...globals.jest,
+        ...globals.vitest,
       },
     },
     files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
@@ -20,7 +20,7 @@ export default [
       "import/no-unresolved": [
         "error",
         {
-          ignore: ["^markdownlint/.+"],
+          ignore: ["^markdownlint/.+", "^vitest/.+"],
         },
       ],
     },
