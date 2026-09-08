@@ -27,7 +27,7 @@
     "js-yaml": "^5.2.2",
     "markdownlint": "^0.41.0",
     "markdownlint-cli2": "^0.23.1",
-    "vitest": "^4.1.9"
+    "vitest": "^5.0.0"
   },
   "overrides": {
     "postcss": "8.5.23"
