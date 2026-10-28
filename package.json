@@ -30,6 +30,7 @@
     "vitest": "^5.0.0"
   },
   "overrides": {
+    "katex": "0.18.2",
     "postcss": "8.5.23"
   },
   "repository": {
